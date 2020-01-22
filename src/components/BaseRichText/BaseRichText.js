@@ -10,9 +10,6 @@ import { up } from 'styled-breakpoints'
 export default ({ json, textAlign }) => {
   const Container = styled.div`
     text-align: center;
-    > *:first-child {
-      margin-top: 0;
-    }
     ${up('md')} {
       text-align: ${textAlign};
     }
@@ -27,12 +24,29 @@ export default ({ json, textAlign }) => {
     text-decoration: underline;
   `
 
+  const Node = styled.div`
+    margin-bottom: ${props => props.marginBottom};
+  `
+
   const html = documentToReactComponents(json, {
     renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br key={i} />, text]),
     renderNode: {
-      [BLOCKS.HEADING_1]: (_, children) => <BaseText3 text={children} showMargin={true}/>,
-      [BLOCKS.HEADING_2]: (_, children) => <BaseText4 text={children} showMargin={true}/>,
-      [BLOCKS.PARAGRAPH]: (_, children) => children[0][1] && <BaseText2 text={children} showMargin={true}/>,
+      [BLOCKS.HEADING_1]: (_, children) => (
+        <Node marginBottom="var(--spacing-6)">
+          <BaseText3 text={children}/>
+        </Node>
+      ),
+      [BLOCKS.HEADING_2]: (_, children) => (
+        <Node marginBottom="var(--spacing-5)">
+          <BaseText4 text={children}/>
+        </Node>
+      ),
+      [BLOCKS.PARAGRAPH]: (_, children) => (
+        children[0][1] &&
+        <Node marginBottom="var(--spacing-5)">
+          <BaseText2 text={children}/>
+        </Node>
+      ),
       [INLINES.HYPERLINK]: (node, children) => <Anchor href={node.data.uri}>{ children }</Anchor>,
     },
     renderMark: {

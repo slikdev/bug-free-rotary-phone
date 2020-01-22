@@ -12,6 +12,7 @@ const Container = styled.div`
     > * { flex: 1 }
   }
 `
+
 const Spacer = styled.div`
   flex: 0 0 var(--spacing-6);
   display: none;
