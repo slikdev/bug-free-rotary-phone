@@ -1,6 +1,7 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import contentfulComponents from '../../contentful/components'
+import { ThemeProvider } from 'styled-components'
 
 export const query = graphql`
   query ContentfulPageBySlug($slug: String!) {
@@ -25,11 +26,18 @@ export default class TemplatePage extends React.Component {
   render() {
     const data = this.props.data.contentfulPage
     return (
-      <div>
-        {data.components.map((component, i) =>
-          this.createContentfulComponent(component.id, component.__typename, i)
-        )}
-      </div>
+      <ThemeProvider theme={{
+        breakpoints: {
+          md: '768px',
+          lg: '996px'
+        }}
+      }>
+        <div>
+          {data.components.map((component, i) =>
+            this.createContentfulComponent(component.id, component.__typename, i)
+          )}
+        </div>
+      </ThemeProvider>
     )
   }
 }

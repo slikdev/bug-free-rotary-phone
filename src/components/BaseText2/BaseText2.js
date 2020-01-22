@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 export default ({ text }) => {
   const Text = styled.div`
-    font-size: 4.2rem;
+    font-size: 1.8rem;
   `
 
   return <Text dangerouslySetInnerHTML={{ __html: text }}/>

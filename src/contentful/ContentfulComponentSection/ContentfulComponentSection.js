@@ -1,10 +1,10 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import contentfulComponents from '../components'
-import styled from 'styled-components'
+import BaseLayoutCenter from '../../components/BaseLayoutCenter/BaseLayoutCenter'
 
 export default ({ id }) => {
-  const item = useStaticQuery(
+  const data = useStaticQuery(
     graphql`
       query AllContentfulComponentSection {
         allContentfulComponentSection {
@@ -29,26 +29,12 @@ export default ({ id }) => {
     )
   }
 
-  const Container = styled.div`
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    background: ${item.backgroundColor};
-    padding: var(--spacing-7) var(--spacing-4);
-  `
-
-  const Content = styled.div`
-    max-width: 996px;
-    width: 100%;
-  `
-
   return (
-    <Container>
-      <Content>
-        {item.components.map((component, i) =>
-          createContentfulComponent(component.id, component.__typename, i)
-        )}
-      </Content>
-    </Container>
+    <BaseLayoutCenter
+      backgroundColor={data.backgroundColor}
+      slot={data.components.map((component, i) =>
+        createContentfulComponent(component.id, component.__typename, i)
+      )}
+    />
   )
 }
