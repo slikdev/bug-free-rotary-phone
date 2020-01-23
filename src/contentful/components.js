@@ -4,6 +4,8 @@ import ContentfulComponentRichText2X from './ContentfulComponentRichText2X/Conte
 import ContentfulComponentCarousel from './ContentfulComponentCarousel/ContentfulComponentCarousel'
 import ContentfulComponentSpacer from './ContentfulComponentSpacer/ContentfulComponentSpacer'
 import ContentfulComponentImageFullWidth from './ContentfulComponentImageFullWidth/ContentfulComponentImageFullWidth'
+import ContentfulComponentIconCopyActionGroup from './ContentfulComponentIconCopyActionGroup/ContentfulComponentIconCopyActionGroup'
+import ContentfulComponentVideoCopyActionGroup from './ContentfulComponentVideoCopyActionGroup/ContentfulComponentVideoCopyActionGroup'
 
 export default {
   ContentfulComponentSection,
@@ -11,5 +13,7 @@ export default {
   ContentfulComponentRichText2X,
   ContentfulComponentCarousel,
   ContentfulComponentSpacer,
-  ContentfulComponentImageFullWidth
+  ContentfulComponentImageFullWidth,
+  ContentfulComponentIconCopyActionGroup,
+  ContentfulComponentVideoCopyActionGroup
 }
