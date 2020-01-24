@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import BaseIconCopyAction from '../../components/BaseIconCopyAction/BaseIconCopyAction'
-import BaseColumnGroup from '../../components/BaseColumnGroup/BaseColumnGroup'
+import { BaseColumnGroup } from '../../components/BaseColumnGroup/BaseColumnGroup'
 
 export default ({ id }) => {
   const data = useStaticQuery(
@@ -46,7 +46,7 @@ export default ({ id }) => {
           buttonStyle={item.buttonStyle}
           buttonColor={item.buttonColor}
           buttonLink={item.buttonLink}
-          columns={columns}
+          columns={data.items.length}
           key={i}
         />
       ))}

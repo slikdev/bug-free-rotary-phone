@@ -1,7 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import BaseVideoCopyAction from '../../components/BaseVideoCopyAction/BaseVideoCopyAction'
-import BaseColumnGroup from '../../components/BaseColumnGroup/BaseColumnGroup'
+import { BaseVideoCopyActionGroup } from '../../components/BaseVideoCopyActionGroup/BaseVideoCopyActionGroup'
 
 export default ({ id }) => {
   const data = useStaticQuery(
@@ -22,6 +21,11 @@ export default ({ id }) => {
                   url
                 }
               }
+              video {
+                file {
+                  url
+                }
+              }
               imageBannerCopy
               buttonCopy
               buttonLink
@@ -34,20 +38,15 @@ export default ({ id }) => {
     item => item.id === id
   )
 
-  return (
-    <BaseColumnGroup
-      items={data.items.map((item, i) => (
-        <BaseVideoCopyAction
-          title={item.title.title}
-          paragraph={item.paragraph.paragraph}
-          image={item.imageThumbnail.file.url}
-          bannerCopy={item.imageBannerCopy}
-          buttonCopy={item.buttonCopy}
-          buttonLink={item.buttonLink}
-          columns={data.items.length}
-          key={i}
-        />
-      ))}
-    />
-  )
+  const items = data.items.map(item => ({
+    title: item.title.title,
+    paragraph: item.paragraph.paragraph,
+    video: item.video.file.url,
+    image: item.imageThumbnail.file.url,
+    bannerCopy: item.imageBannerCopy,
+    buttonCopy: item.buttonCopy,
+    buttonLink: item.buttonLink
+  }))
+
+  return <BaseVideoCopyActionGroup items={ items } />
 }

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
 import { up } from 'styled-breakpoints'
 
-export default ({ title, paragraph, image, bannerCopy, buttonCopy, buttonLink, columns }) => {
+export default ({ title, paragraph, image, bannerCopy, buttonCopy, buttonLink, columns, onVideoSelected }) => {
   const Container = styled.div`
     display: flex;
     flex-direction: column;
@@ -20,8 +20,13 @@ export default ({ title, paragraph, image, bannerCopy, buttonCopy, buttonLink, c
     cursor: pointer;
   `
 
-  const Image = styled.img`
+  const Image = styled.div`
+    will-change: transform;
     position: absolute;
+    background-image: url(${image});
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center center;
     width: 100%;
     height: 100%;
     top: 0;
@@ -71,8 +76,8 @@ export default ({ title, paragraph, image, bannerCopy, buttonCopy, buttonLink, c
 
   return (
     <Container>
-      <ImageContainer>
-        <Image src={ image }/>
+      <ImageContainer onClick={onVideoSelected}>
+        <Image/>
         <Banner>{ bannerCopy }</Banner>
         <PlayIcon src={require('../../assets/img/play.svg')}/>
       </ImageContainer>
