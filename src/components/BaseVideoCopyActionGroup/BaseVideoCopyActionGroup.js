@@ -21,9 +21,14 @@ export class BaseVideoCopyActionGroup extends React.Component {
 
   constructor(props) {
     super(props)
+    this.videoPlayerRef = React.createRef()
     this.videoPlayerContainerRef = React.createRef()
     this.spacerRef = React.createRef()
     this.state = { selectedVideoIndex: 0 }
+  }
+
+  onClose () {
+    this.animateVideoPlayer('out')
   }
 
   onVideoSelected (i) {
@@ -31,7 +36,11 @@ export class BaseVideoCopyActionGroup extends React.Component {
   }
 
   animateVideoPlayer (direction) {
-    const tl = new anime.timeline({ easing: 'easeInOutQuad' })
+    const tl = new anime.timeline({
+      easing: 'easeInOutQuad',
+      begin: () => direction === 'in' ? this.videoPlayerRef.current.plyr.play() : null,
+      complete: () => direction === 'out' ? this.videoPlayerRef.current.plyr.stop() : null
+    })
     tl.add({
       targets: this.videoPlayerContainerRef.current,
       height: direction === 'in' ? ({ children: [ el ] }) => el.offsetHeight : 0,
@@ -50,9 +59,11 @@ export class BaseVideoCopyActionGroup extends React.Component {
       <>
         <VideoPlayerContainer ref={ this.videoPlayerContainerRef }>
           <BaseVideoPlayer
+            ref={ this.videoPlayerRef }
             title={ this.props.items[this.state.selectedVideoIndex].title }
             poster={ this.props.items[this.state.selectedVideoIndex].image }
             src={ this.props.items[this.state.selectedVideoIndex].video }
+            onClose={ () => this.onClose() }
           />
         </VideoPlayerContainer>
         <Spacer ref={ this.spacerRef }/>

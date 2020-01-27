@@ -45,3 +45,17 @@ input, input:before, input:after {
   -ms-user-select: initial;
   user-select: initial;
  }
+
+.plyr--video .plyr__control.plyr__tab-focus,
+.plyr--video .plyr__control:hover,
+.plyr--video .plyr__control[aria-expanded=true] {
+  background: var(--color-red-1) !important;
+}
+
+.plyr--full-ui input[type=range] {
+  color: var(--color-red-1) !important;
+}
+
+.plyr__control--overlaid {
+  background: rgba(228, 0, 0, 0.8) !important;
+}
