@@ -45,12 +45,12 @@ export class BaseVideoCopyActionGroup extends React.Component {
       targets: this.videoPlayerContainerRef.current,
       height: direction === 'in' ? ({ children: [ el ] }) => el.offsetHeight : 0,
       opacity: direction === 'in' ? 1 : 0,
-      duration: 1000
+      duration: 500
     }, 0)
     tl.add({
       targets: this.spacerRef.current,
       height: direction === 'in' ? 40 : 0,
-      duration: 1000
+      duration: 500
     }, 0)
   }
 

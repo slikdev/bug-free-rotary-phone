@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import BaseText5 from '../BaseText5/BaseText5'
 
 export default ({ text, color, href }) => {
-  const Container = styled.div`
+  const Container = styled.a`
     font-size: 1.6rem;
     height: 2em;
     display: flex;
@@ -14,13 +14,9 @@ export default ({ text, color, href }) => {
     color: ${color};
   `
 
-  const A = styled.a``
-
   return (
-    <Container>
-      <A href={ href }>
-        <BaseText5 text={ text }/>
-      </A>
+    <Container href={ href }>
+      <BaseText5 text={ text }/>
     </Container>
   )
 }

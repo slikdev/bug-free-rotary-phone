@@ -6,6 +6,7 @@ import ContentfulComponentSpacer from './ContentfulComponentSpacer/ContentfulCom
 import ContentfulComponentImageFullWidth from './ContentfulComponentImageFullWidth/ContentfulComponentImageFullWidth'
 import ContentfulComponentIconCopyActionGroup from './ContentfulComponentIconCopyActionGroup/ContentfulComponentIconCopyActionGroup'
 import ContentfulComponentVideoCopyActionGroup from './ContentfulComponentVideoCopyActionGroup/ContentfulComponentVideoCopyActionGroup'
+import ContentfulComponentButton from './ContentfulComponentButton/ContentfulComponentButton'
 
 export default {
   ContentfulComponentSection,
@@ -15,5 +16,6 @@ export default {
   ContentfulComponentSpacer,
   ContentfulComponentImageFullWidth,
   ContentfulComponentIconCopyActionGroup,
-  ContentfulComponentVideoCopyActionGroup
+  ContentfulComponentVideoCopyActionGroup,
+  ContentfulComponentButton
 }
