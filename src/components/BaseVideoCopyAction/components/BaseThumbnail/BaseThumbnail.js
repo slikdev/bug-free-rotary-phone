@@ -100,7 +100,7 @@ export class BaseThumbnail extends React.Component {
           ref={ this.imageThumbnailRef }
           >
           <Banner>{ this.props.bannerCopy }</Banner>
-          <PlayIcon src={require('../../../../assets/img/play.svg')}/>
+          <PlayIcon src={require('../../../../assets/img/play-circle.svg')}/>
         </ImageThumbnail>
         { this.props.video
           ? (

@@ -13,9 +13,15 @@ export default ({ title, subtitle, imageLarge, imageMedium, imageSmall }) => {
     background-image: url(${imageSmall});
     background-size: cover;
     background-position: center center;
-    padding: var(--spacing-7) var(--spacing-4);
-    ${up('md')} { background-image: url(${imageMedium}) }
-    ${up('lg')} { background-image: url(${imageLarge}) }
+    padding: 3rem 2rem;
+    ${up('md')} {
+      background-image: url(${imageMedium});
+      padding: 10rem 2rem;
+    }
+    ${up('lg')} {
+      background-image: url(${imageLarge});
+      padding: 6rem 2rem;
+    }
   `
 
   const Content = styled.div`

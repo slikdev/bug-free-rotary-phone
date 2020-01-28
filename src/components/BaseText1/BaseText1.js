@@ -6,5 +6,5 @@ export default ({ text }) => {
     font-size: 4.2rem;
   `
 
-  return <Text>{ text }</Text>
+  return <Text dangerouslySetInnerHTML={{ __html: text }}/>
 }
