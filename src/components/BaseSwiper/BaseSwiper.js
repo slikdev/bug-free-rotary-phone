@@ -7,18 +7,33 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
+  :hover .button {
+    opacity: 1;
+  }
+`
+
+const NavigationContainer = styled.div`
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 50%;
+  max-width: 996px;
+  transform: translateX(-50%);
+  display: none;
+  z-index: 1;
+  ${up('lg')} {
+    display: block;
+  }
 `
 
 const PaginationContainer = styled.div`
-  display: none;
-  ${up('lg')} {
-    position: absolute;
-    width: 100%;
-    bottom: 1.5rem;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+  position: absolute;
+  width: 100%;
+  bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `
 
 const PlayPauseButton = styled.img`
@@ -29,11 +44,34 @@ const PlayPauseButton = styled.img`
   cursor: pointer;
 `
 
+const NavigationButton = styled.img`
+  position: absolute;
+  height: 5rem;
+  right: 100%;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: 0 var(--spacing-6);
+  transition: opacity 0.2s ease-in-out;
+  cursor: pointer;
+  z-index: 1;
+  opacity: 0;
+`
+
+const PrevButton = styled(NavigationButton)`
+  right: 100%;
+`
+
+const NextButton = styled(NavigationButton)`
+  left: 100%;
+`
+
 export class BaseSwiper extends React.Component {
   constructor(props) {
     super(props)
     this.state = { autoplaying: true }
     this.swiperContainerRef = React.createRef()
+    this.prevButtonRef = React.createRef()
+    this.nextButtonRef = React.createRef()
     this.swiper = null
   }
 
@@ -43,6 +81,10 @@ export class BaseSwiper extends React.Component {
         el: '.swiper-pagination',
         type: 'bullets',
         clickable: true
+      },
+      navigation: {
+        nextEl: this.nextButtonRef.current,
+        prevEl: this.prevButtonRef.current,
       },
       autoplay: {
         delay: 5000,
@@ -68,18 +110,20 @@ export class BaseSwiper extends React.Component {
           <div className="swiper-wrapper">
             { this.props.slides.map((slide, i) => <div className="swiper-slide" key={i}>{ slide }</div>) }
           </div>
-          <PaginationContainer>
-            <PlayPauseButton
-              onClick={ this.onClickPlayPause.bind(this) }
-              src={ this.state.autoplaying
-                ? require('../../assets/img/pause.svg')
-                : require('../../assets/img/play.svg')
-              }
-            />
-            <div className="swiper-pagination"/>
-          </PaginationContainer>
-          <div className="swiper-button-prev"></div>
-          <div className="swiper-button-next"></div>
+          <NavigationContainer>
+            <PaginationContainer>
+              <PlayPauseButton
+                onClick={ this.onClickPlayPause.bind(this) }
+                src={ this.state.autoplaying
+                  ? require('../../assets/img/pause.svg')
+                  : require('../../assets/img/play.svg')
+                }
+              />
+              <div className="swiper-pagination"/>
+            </PaginationContainer>
+            <PrevButton className="button" ref={ this.prevButtonRef } src={ require('../../assets/img/prev-button.svg') }/>
+            <NextButton className="button" ref={ this.nextButtonRef } src={ require('../../assets/img/next-button.svg') }/>
+          </NavigationContainer>
         </div>
       </Container>
     )
