@@ -1,57 +1,15 @@
 import React from 'react'
 import styled from 'styled-components'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
+import { BaseThumbnail } from './components/BaseThumbnail/BaseThumbnail'
 import { up } from 'styled-breakpoints'
 
-export default ({ title, paragraph, image, bannerCopy, buttonCopy, buttonLink, columns, onVideoSelected }) => {
+export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, buttonLink, columns, onImageThumbnailClick }) => {
   const Container = styled.div`
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
-    text-align: left;
-  `
-
-  const ImageContainer = styled.div`
-    width: 100%;
-    height: 0px;
-    position: relative;
-    padding-top: calc(100% / 3 * 2);
-    margin-bottom: var(--spacing-6);
-    cursor: pointer;
-  `
-
-  const Image = styled.div`
-    will-change: transform;
-    position: absolute;
-    background-image: url(${image});
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center center;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-  `
-
-  const Banner = styled.div`
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-size: 1.6rem;
-    padding: 0 1em;
-    height: 2em;
-    display: flex;
-    align-items: center;
-    background-color: var(--color-blue-1);
-    border-bottom-right-radius: var(--border-radius-2);
-  `
-
-  const PlayIcon = styled.img`
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    height: 20%;
+    align-items: ${columns > 1 ? 'flex-start' : 'center'};
+    text-align: ${columns > 1 ? 'left' : 'center'};
   `
 
   const Title = styled.div`
@@ -76,11 +34,13 @@ export default ({ title, paragraph, image, bannerCopy, buttonCopy, buttonLink, c
 
   return (
     <Container>
-      <ImageContainer onClick={onVideoSelected}>
-        <Image/>
-        <Banner>{ bannerCopy }</Banner>
-        <PlayIcon src={require('../../assets/img/play.svg')}/>
-      </ImageContainer>
+      <BaseThumbnail
+        bannerCopy={ bannerCopy }
+        onImageThumbnailClick={ onImageThumbnailClick }
+        image={ image }
+        video={ video }
+        columns={ columns }
+      />
       <Title>
         { title }
       </Title>

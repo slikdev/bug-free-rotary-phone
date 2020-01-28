@@ -1,6 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import { BaseVideoCopyActionGroup } from '../../components/BaseVideoCopyActionGroup/BaseVideoCopyActionGroup'
+import BaseVideoCopyAction from '../../components/BaseVideoCopyAction/BaseVideoCopyAction'
 
 export default ({ id }) => {
   const data = useStaticQuery(
@@ -48,5 +49,14 @@ export default ({ id }) => {
     buttonLink: item.buttonLink
   }))
 
-  return <BaseVideoCopyActionGroup items={ items } />
+  const columns = items.length
+
+  return (
+    <>
+      { columns > 1
+        ? <BaseVideoCopyActionGroup items={ items } />
+        : <BaseVideoCopyAction { ...items[0] } columns={ columns } />
+      }
+    </>
+  )
 }

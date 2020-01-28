@@ -31,7 +31,7 @@ export class BaseVideoCopyActionGroup extends React.Component {
     this.animateVideoPlayer('out')
   }
 
-  onVideoSelected (i) {
+  onImageThumbnailClick (i) {
     this.setState({ selectedVideoIndex: i }, () => this.animateVideoPlayer('in'))
   }
 
@@ -77,7 +77,7 @@ export class BaseVideoCopyActionGroup extends React.Component {
               buttonCopy={item.buttonCopy}
               buttonLink={item.buttonLink}
               columns={this.props.items.length}
-              onVideoSelected={() => this.onVideoSelected(i)}
+              onImageThumbnailClick={() => this.onImageThumbnailClick(i)}
               key={i}
             />
           ))}
