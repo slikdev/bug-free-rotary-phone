@@ -11,7 +11,7 @@ const CloseButton = styled.img`
   position: absolute;
   top: 0;
   right: 0;
-  height: 7%;
+  height: var(--spacing-6);
   opacity: 0.8;
   z-index: 1;
   transition: opacity 0.2s ease-in-out;
