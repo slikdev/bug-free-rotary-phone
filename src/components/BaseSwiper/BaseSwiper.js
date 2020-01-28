@@ -45,7 +45,7 @@ export class BaseSwiper extends React.Component {
         clickable: true
       },
       autoplay: {
-        delay: 1000,
+        delay: 5000,
         disableOnInteraction: false
       },
       effect: 'fade',
