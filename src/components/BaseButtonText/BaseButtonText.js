@@ -2,8 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import BaseText2 from '../BaseText2/BaseText2'
 
-export default ({ text, color, href }) => {
-  const A = styled.a`
+export default ({ text, color, href, as }) => {
+  const A = styled[as || 'a']`
     display: flex;
     align-items: center;
     white-space: nowrap;

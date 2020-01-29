@@ -7,9 +7,6 @@ const Container = styled.div`
   position: relative;
   width: 100%;
   height: 100%;
-  :hover .button {
-    opacity: 1;
-  }
 `
 
 const NavigationContainer = styled.div`
@@ -55,6 +52,9 @@ const NavigationButton = styled.img`
   cursor: pointer;
   z-index: 1;
   opacity: 0;
+  ${Container}:hover & {
+    opacity: 1;
+  }
 `
 
 const PrevButton = styled(NavigationButton)`
@@ -121,8 +121,8 @@ export class BaseSwiper extends React.Component {
               />
               <div className="swiper-pagination"/>
             </PaginationContainer>
-            <PrevButton className="button" ref={ this.prevButtonRef } src={ require('../../assets/img/prev-button.svg') }/>
-            <NextButton className="button" ref={ this.nextButtonRef } src={ require('../../assets/img/next-button.svg') }/>
+            <PrevButton ref={ this.prevButtonRef } src={ require('../../assets/img/prev-button.svg') }/>
+            <NextButton ref={ this.nextButtonRef } src={ require('../../assets/img/next-button.svg') }/>
           </NavigationContainer>
         </div>
       </Container>

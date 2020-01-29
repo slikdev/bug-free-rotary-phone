@@ -8,6 +8,7 @@
   --color-black-1: #000000;
   --color-black-2: #323232;
   --color-gray-1: #f5f5f5;
+  --color-gray-2: #dadada;
   --color-red-1: #e40000;
   --color-blue-1: #6fe5e1;
 
@@ -26,8 +27,8 @@
   --spacing-9: 10rem;
 
   // box-shadow
-  --box-shadow-1: 0 2px 4px 0 rgba(0, 0, 0, 0.08);
-  --box-shadow-2: 0 2px 4px 0 rgb(51, 154, 244, 0.16);
+  --box-shadow-1: rgba(0, 0, 0, 0.15) 0px 1px 3px 0px;
+  --box-shadow-2: rgba(0, 0, 0, 0.08) 0px 1px 2px 0px;
 
   // border-radius
   --border-radius-1: 3px;

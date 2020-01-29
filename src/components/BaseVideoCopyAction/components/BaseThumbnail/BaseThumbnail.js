@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import BaseBanner from '../../../BaseBanner/BaseBanner'
 import { BaseVideoPlayer } from '../../../BaseVideoPlayer/BaseVideoPlayer'
 import anime from 'animejs'
 
@@ -26,17 +27,10 @@ const ImageThumbnail = styled.div`
   z-index: 2;
 `
 
-const Banner = styled.div`
+const BannerContainer = styled.div`
   position: absolute;
   top: 0;
   left: 0;
-  font-size: 1.6rem;
-  padding: 0 1em;
-  height: 2em;
-  display: flex;
-  align-items: center;
-  background-color: var(--color-blue-1);
-  border-bottom-right-radius: var(--border-radius-2);
 `
 
 const PlayIcon = styled.img`
@@ -99,7 +93,9 @@ export class BaseThumbnail extends React.Component {
           onClick={ this.onImageThumbnailClick.bind(this) }
           ref={ this.imageThumbnailRef }
           >
-          <Banner>{ this.props.bannerCopy }</Banner>
+          <BannerContainer>
+            <BaseBanner text={ this.props.bannerCopy }/>
+          </BannerContainer>
           <PlayIcon src={require('../../../../assets/img/play-circle.svg')}/>
         </ImageThumbnail>
         { this.props.video

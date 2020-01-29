@@ -7,6 +7,7 @@ import ContentfulComponentImageFullWidth from './ContentfulComponentImageFullWid
 import ContentfulComponentIconCopyActionGroup from './ContentfulComponentIconCopyActionGroup/ContentfulComponentIconCopyActionGroup'
 import ContentfulComponentVideoCopyActionGroup from './ContentfulComponentVideoCopyActionGroup/ContentfulComponentVideoCopyActionGroup'
 import ContentfulComponentButton from './ContentfulComponentButton/ContentfulComponentButton'
+import ContentfulComponentPartners from './ContentfulComponentPartners/ContentfulComponentPartners'
 
 export default {
   ContentfulComponentSection,
@@ -17,5 +18,6 @@ export default {
   ContentfulComponentImageFullWidth,
   ContentfulComponentIconCopyActionGroup,
   ContentfulComponentVideoCopyActionGroup,
-  ContentfulComponentButton
+  ContentfulComponentButton,
+  ContentfulComponentPartners
 }

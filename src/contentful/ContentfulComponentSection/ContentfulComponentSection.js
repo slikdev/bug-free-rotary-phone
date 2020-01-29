@@ -10,7 +10,8 @@ export default ({ id }) => {
         allContentfulComponentSection {
           nodes {
             id
-            backgroundColor
+            backgroundColorTop
+            backgroundColorBottom
             components {
               ... on Node {
                 __typename
@@ -31,7 +32,8 @@ export default ({ id }) => {
 
   return (
     <BaseLayoutCenter
-      backgroundColor={data.backgroundColor}
+      backgroundColorTop={data.backgroundColorTop}
+      backgroundColorBottom={data.backgroundColorBottom}
       slot={data.components.map((component, i) =>
         createContentfulComponent(component.id, component.__typename, i)
       )}
