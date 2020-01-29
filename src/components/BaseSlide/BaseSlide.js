@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import { up } from 'styled-breakpoints'
 import BaseText1 from '../BaseText1/BaseText1'
 import BaseText2 from '../BaseText2/BaseText2'
+import vars from '../../assets/css/vars/vars'
 
 export default ({ title, subtitle, imageLarge, imageMedium, imageSmall }) => {
   const Container = styled.div`
@@ -30,8 +31,8 @@ export default ({ title, subtitle, imageLarge, imageMedium, imageSmall }) => {
   `
 
   const ContainerTitle = styled.div`
-    margin-bottom: var(--spacing-5);
-    font-weight: var(--font-weight-bold);
+    margin-bottom: ${vars.SPACING_5};
+    font-weight: ${vars.FONT_WEIGHT_BOLD};
   `
 
   return (

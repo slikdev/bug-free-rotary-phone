@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Plyr from 'plyr'
 import 'plyr/dist/plyr.css'
+import vars from '../../assets/css/vars/vars'
 
 const Container = styled.div`
   position: relative;
@@ -11,7 +12,7 @@ const CloseButton = styled.img`
   position: absolute;
   top: 0;
   right: 0;
-  height: var(--spacing-6);
+  height: ${vars.SPACING_6};
   opacity: 0.8;
   z-index: 1;
   transition: opacity 0.2s ease-in-out;

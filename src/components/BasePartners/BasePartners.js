@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import BasePartner from './components/BasePartner/BasePartner'
 import { up } from 'styled-breakpoints'
+import vars from '../../assets/css/vars/vars'
 
 const categorySpacing = '2rem'
 const partnerSpacing = '2rem'
@@ -34,13 +35,13 @@ const Category = styled.div`
   height: 6.5rem;
   line-height: 1.25;
   font-size: 1.6rem;
-  border-radius: var(--border-radius-1);
-  box-shadow: var(--box-shadow-2);
-  border: solid 1px var(--color-gray-2);
+  border-radius: ${vars.BORDER_RADIUS_1};
+  box-shadow: ${vars.BOX_SHADOW_2};
+  border: solid 1px ${vars.COLOR_GRAY_2};
   text-align: center;
-  border: solid 1px ${props => props.active ? 'var(--color-transparent)' : 'var(--color-gray-2)'};
-  color: ${props => props.active ? 'var(--color-white-1)' : 'var(--color-black-2)'};
-  background: ${props => props.active ? 'var(--color-red-1)' : 'var(--color-white-1)'};
+  border: solid 1px ${props => props.active ? vars.COLOR_TRANSPARENT : vars.COLOR_GRAY_2};
+  color: ${props => props.active ? vars.COLOR_WHITE_1 : vars.COLOR_BLACK_2};
+  background: ${props => props.active ? vars.COLOR_RED_1 : vars.COLOR_WHITE_1};
   cursor: pointer;
 `
 

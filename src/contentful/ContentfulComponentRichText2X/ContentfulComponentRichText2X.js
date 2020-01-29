@@ -3,6 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 import BaseRichText from '../../components/BaseRichText/BaseRichText'
 import styled from 'styled-components'
 import { up } from 'styled-breakpoints'
+import vars from '../../assets/css/vars/vars'
 
 const Container = styled.div`
   display: flex;
@@ -14,7 +15,7 @@ const Container = styled.div`
 `
 
 const Spacer = styled.div`
-  flex: 0 0 var(--spacing-6);
+  flex: 0 0 ${vars.SPACING_6};
   display: none;
   ${up('md')} {
     display: block;

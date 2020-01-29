@@ -2,6 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import contentfulComponents from '../../contentful/components'
 import { ThemeProvider } from 'styled-components'
+import { DefaultStyles } from '../../assets/css/defaults/defaults'
 
 export const query = graphql`
   query ContentfulPageBySlug($slug: String!) {
@@ -32,6 +33,7 @@ export default class TemplatePage extends React.Component {
           lg: '996px'
         }}
       }>
+        <DefaultStyles/>
         <div>
           {data.components.map((component, i) =>
             this.createContentfulComponent(component.id, component.__typename, i)

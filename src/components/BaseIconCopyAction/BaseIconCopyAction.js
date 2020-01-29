@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
 import BaseButtonOutline from '../BaseButtonOutline/BaseButtonOutline'
 import { up } from 'styled-breakpoints'
+import vars from '../../assets/css/vars/vars'
 
 export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, buttonColor, buttonLink, columns }) => {
   const Container = styled.div`
@@ -19,7 +20,7 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-bottom: var(--spacing-6);
+    margin-bottom: ${vars.SPACING_6};
     color: ${fontColor};
   `
 
@@ -29,7 +30,7 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
   `
 
   const Title = styled.div`
-    margin-bottom: var(--spacing-4);
+    margin-bottom: ${vars.SPACING_4};
     font-size: 2.6rem;
     line-height: 1.35;
     ${up('md')} {
@@ -40,7 +41,7 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
   `
 
   const Paragraph = styled.div`
-    margin-bottom: var(--spacing-5);
+    margin-bottom: ${vars.SPACING_5};
     line-height: 1.6;
     font-size: 2rem;
     ${up('md')} {

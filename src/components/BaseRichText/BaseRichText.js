@@ -6,6 +6,7 @@ import BaseText2 from '../BaseText2/BaseText2'
 import BaseText3 from '../BaseText3/BaseText3'
 import BaseText4 from '../BaseText4/BaseText4'
 import { up } from 'styled-breakpoints'
+import vars from '../../assets/css/vars/vars'
 
 export default ({ json, textAlign }) => {
   const Container = styled.div`
@@ -16,11 +17,11 @@ export default ({ json, textAlign }) => {
   `
 
   const Bold = styled.span`
-    font-weight: var(--font-weight-bold);
+    font-weight: ${vars.FONT_WEIGHT_BOLD};
   `
 
   const Anchor = styled.a`
-    color: var(--color-red-1);
+    color: ${vars.COLOR_RED_1};
     text-decoration: underline;
   `
 
@@ -32,18 +33,18 @@ export default ({ json, textAlign }) => {
     renderText: text => text.split('\n').flatMap((text, i) => [i > 0 && <br key={i} />, text]),
     renderNode: {
       [BLOCKS.HEADING_1]: (_, children) => (
-        <Node marginBottom="var(--spacing-6)">
+        <Node marginBottom={vars.SPACING_6}>
           <BaseText3 text={children}/>
         </Node>
       ),
       [BLOCKS.HEADING_2]: (_, children) => (
-        <Node marginBottom="var(--spacing-5)">
+        <Node marginBottom={vars.SPACING_5}>
           <BaseText4 text={children}/>
         </Node>
       ),
       [BLOCKS.PARAGRAPH]: (_, children) => (
         children[0][1] &&
-        <Node marginBottom="var(--spacing-5)">
+        <Node marginBottom={vars.SPACING_5}>
           <BaseText2 text={children}/>
         </Node>
       ),

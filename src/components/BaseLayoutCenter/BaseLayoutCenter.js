@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import vars from '../../assets/css/vars/vars'
 
 export default ({ slot, backgroundColorTop, backgroundColorBottom }) => {
   const Container = styled.div`
@@ -7,7 +8,7 @@ export default ({ slot, backgroundColorTop, backgroundColorBottom }) => {
     display: flex;
     justify-content: center;
     background: linear-gradient(to bottom, ${backgroundColorTop}, ${backgroundColorBottom});
-    padding: var(--spacing-8) var(--spacing-4);
+    padding: ${vars.SPACING_8} ${vars.SPACING_4};
   `
 
   const Content = styled.div`

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import BaseText2 from '../BaseText2/BaseText2'
+import vars from '../../assets/css/vars/vars'
 
 export default ({ text, color, href, as }) => {
   const A = styled[as || 'a']`
@@ -14,7 +15,7 @@ export default ({ text, color, href, as }) => {
 
   const Arrow = styled.svg`
     height: calc(0.45 * 1em);
-    margin-left: var(--spacing-2);
+    margin-left: ${vars.SPACING_2};
     flex-shrink: 0;
   `
 

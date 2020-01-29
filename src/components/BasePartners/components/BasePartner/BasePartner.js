@@ -2,13 +2,14 @@ import React from 'react'
 import styled from 'styled-components'
 import BaseBanner from '../../../BaseBanner/BaseBanner'
 import BaseButtonText from '../../../BaseButtonText/BaseButtonText'
+import vars from '../../../../assets/css/vars/vars'
 
 export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, logo }) => {
   const Container = styled.a`
     display: flex;
     flex-direction: column;
-    box-shadow: var(--box-shadow-1);
-    border-radius: var(--border-radius-1);
+    box-shadow: ${vars.BOX_SHADOW_1};
+    border-radius: ${vars.BORDER_RADIUS_1};
     height: 35rem;
     position: relative;
     width: 100%;
@@ -16,7 +17,7 @@ export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, l
   `
 
   const LogoContainer = styled.div`
-    background: var(--color-gray-1);
+    background: ${vars.COLOR_GRAY_1};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -28,7 +29,7 @@ export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, l
     top: 0;
     left: 0;
     overflow: hidden;
-    border-top-left-radius: var(--border-radius-1);
+    border-top-left-radius: ${vars.BORDER_RADIUS_1};
     max-width: 100%;
     white-space: nowrap;
   `
@@ -45,8 +46,8 @@ export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, l
   const Content = styled.div`
     display: flex;
     flex-direction: column;
-    background: var(--color-white-1);
-    padding: var(--spacing-4);
+    background: ${vars.COLOR_WHITE_1};
+    padding: ${vars.SPACING_4};
     flex: 1;
   `
 
@@ -65,7 +66,7 @@ export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, l
 
   const Title = styled.div`
     font-size: 1.6rem;
-    font-weight: var(--font-weight-bold);
+    font-weight: ${vars.FONT_WEIGHT_BOLD};
     line-height: 1.5;
   `
 
@@ -79,7 +80,7 @@ export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, l
   `
 
   const ButtonContainer = styled.div`
-    margin-top: var(--spacing-2);
+    margin-top: ${vars.SPACING_2};
     * {
       font-size: 1.6rem !important;
     }
@@ -105,7 +106,7 @@ export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, l
         <ContentLower>
           <Terms>{ terms }</Terms>
           <ButtonContainer>
-            <BaseButtonText text={ buttonCopy } color="var(--color-red-1)" as="div"/>
+            <BaseButtonText text={ buttonCopy } color={vars.COLOR_RED_1} as="div"/>
           </ButtonContainer>
         </ContentLower>
       </Content>

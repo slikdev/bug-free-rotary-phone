@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
 import { BaseThumbnail } from './components/BaseThumbnail/BaseThumbnail'
 import { up } from 'styled-breakpoints'
+import vars from '../../assets/css/vars/vars'
 
 export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, buttonLink, columns, onImageThumbnailClick }) => {
   const Container = styled.div`
@@ -13,7 +14,7 @@ export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, button
   `
 
   const Title = styled.div`
-    margin-bottom: var(--spacing-4);
+    margin-bottom: ${vars.SPACING_4};
     font-size: 2.6rem;
     line-height: 1.35;
     ${up('md')} {
@@ -24,7 +25,7 @@ export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, button
   `
 
   const Paragraph = styled.div`
-    margin-bottom: var(--spacing-5);
+    margin-bottom: ${vars.SPACING_5};
     line-height: 1.6;
     font-size: 2rem;
     ${up('md')} {
@@ -47,7 +48,7 @@ export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, button
       <Paragraph>
         { paragraph }
       </Paragraph>
-      <BaseButtonText text={ buttonCopy } color="var(--color-red-1)" href={ buttonLink }/>
+      <BaseButtonText text={ buttonCopy } color={vars.COLOR_RED_1} href={ buttonLink }/>
     </Container>
   )
 }

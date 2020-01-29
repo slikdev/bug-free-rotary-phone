@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import Swiper from 'swiper/js/swiper.esm.bundle'
 import { up } from 'styled-breakpoints'
+import vars from '../../assets/css/vars/vars'
 
 const Container = styled.div`
   position: relative;
@@ -47,7 +48,7 @@ const NavigationButton = styled.img`
   right: 100%;
   top: 50%;
   transform: translateY(-50%);
-  margin: 0 var(--spacing-6);
+  margin: 0 ${vars.SPACING_6};
   transition: opacity 0.2s ease-in-out;
   cursor: pointer;
   z-index: 1;
