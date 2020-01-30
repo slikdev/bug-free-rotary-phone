@@ -92,7 +92,8 @@ export class BaseSwiper extends React.Component {
         disableOnInteraction: false
       },
       effect: 'fade',
-      loop: true
+      loop: true,
+      followFinger: false
     })
   }
 

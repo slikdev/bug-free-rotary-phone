@@ -8,6 +8,8 @@ import ContentfulComponentIconCopyActionGroup from './ContentfulComponentIconCop
 import ContentfulComponentVideoCopyActionGroup from './ContentfulComponentVideoCopyActionGroup/ContentfulComponentVideoCopyActionGroup'
 import ContentfulComponentButton from './ContentfulComponentButton/ContentfulComponentButton'
 import ContentfulComponentPartners from './ContentfulComponentPartners/ContentfulComponentPartners'
+import ContentfulComponentStickyActionBar from './ContentfulComponentStickyActionBar/ContentfulComponentStickyActionBar'
+import ContentfulComponentTerms from './ContentfulComponentTerms/ContentfulComponentTerms'
 
 export default {
   ContentfulComponentSection,
@@ -19,5 +21,7 @@ export default {
   ContentfulComponentIconCopyActionGroup,
   ContentfulComponentVideoCopyActionGroup,
   ContentfulComponentButton,
-  ContentfulComponentPartners
+  ContentfulComponentPartners,
+  ContentfulComponentStickyActionBar,
+  ContentfulComponentTerms
 }
