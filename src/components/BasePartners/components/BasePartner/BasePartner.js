@@ -77,6 +77,7 @@ export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, l
 
   const Terms = styled.div`
     font-size: 1.2rem;
+    line-height: 1.5;
   `
 
   const ButtonContainer = styled.div`

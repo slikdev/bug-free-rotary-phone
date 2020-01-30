@@ -6,7 +6,6 @@ export const DefaultStyles = createGlobalStyle`
     box-sizing: border-box;
     -webkit-overflow-scrolling: touch;
     -webkit-tap-highlight-color: rgba(0,0,0,0);
-    user-select: none;
   }
 
   html {
