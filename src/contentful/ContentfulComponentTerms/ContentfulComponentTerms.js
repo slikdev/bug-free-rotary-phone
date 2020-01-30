@@ -18,5 +18,5 @@ export default ({ id }) => {
     `
   ).allContentfulComponentTerms.nodes.find(item => item.id === id)
 
-  return <BaseRichText json={data.content.json} textAlign="left" forceFontSize="1.4rem"/>
+  return <BaseRichText json={data.content.json} textAlign="left" forceFontSize="1.4rem" forceTextAlign="left"/>
 }

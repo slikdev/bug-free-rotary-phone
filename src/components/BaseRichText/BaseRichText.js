@@ -8,7 +8,7 @@ import BaseText4 from '../BaseText4/BaseText4'
 import { up } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
 
-export default ({ json, textAlign, forceFontSize }) => {
+export default ({ json, textAlign, forceFontSize, forceTextAlign }) => {
   const Container = styled.div`
     text-align: center;
     ${up('md')} {
@@ -29,6 +29,7 @@ export default ({ json, textAlign, forceFontSize }) => {
     margin-bottom: ${props => props.marginBottom};
     * {
       ${forceFontSize ? `font-size: ${forceFontSize} !important;` : null}
+      ${forceTextAlign ? `text-align: ${forceTextAlign} !important;` : null}
     }
   `
 

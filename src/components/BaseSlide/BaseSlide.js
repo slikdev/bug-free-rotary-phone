@@ -5,7 +5,7 @@ import BaseText1 from '../BaseText1/BaseText1'
 import BaseText2 from '../BaseText2/BaseText2'
 import vars from '../../assets/css/vars/vars'
 
-export default ({ title, subtitle, imageLarge, imageMedium, imageSmall }) => {
+export default ({ title, subtitle, imageLarge, imageMedium, imageSmall, fontColor }) => {
   const Container = styled.div`
     width: 100%;
     height: 100%;
@@ -15,6 +15,9 @@ export default ({ title, subtitle, imageLarge, imageMedium, imageSmall }) => {
     background-size: cover;
     background-position: center center;
     padding: 3rem 2rem;
+    > * {
+      color: ${fontColor} !important;
+    }
     ${up('md')} {
       background-image: url(${imageMedium});
       padding: 10rem 2rem;
@@ -33,6 +36,9 @@ export default ({ title, subtitle, imageLarge, imageMedium, imageSmall }) => {
   const ContainerTitle = styled.div`
     margin-bottom: ${vars.SPACING_5};
     font-weight: ${vars.FONT_WEIGHT_BOLD};
+    > * {
+      color: ${fontColor} !important;
+    }
   `
 
   return (

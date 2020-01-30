@@ -47,7 +47,8 @@ export default ({ id }) => {
     subtitle: slide.subtitle.subtitle,
     imageLarge: slide.imageLarge.file.url,
     imageMedium: slide.imageMedium.file.url,
-    imageSmall: slide.imageSmall.file.url
+    imageSmall: slide.imageSmall.file.url,
+    fontColor: slide.fontColor
   }))
 
   const Container = styled.div`
