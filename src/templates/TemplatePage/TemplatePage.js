@@ -4,6 +4,13 @@ import contentfulComponents from '../../contentful/components'
 import { ThemeProvider } from 'styled-components'
 import { DefaultStyles } from '../../assets/css/defaults/defaults'
 
+const theme = {
+  breakpoints: {
+    md: '768px',
+    lg: '996px'
+  }
+}
+
 export const query = graphql`
   query ContentfulPageBySlug($slug: String!) {
     contentfulPage(slug: { eq: $slug }) {
@@ -24,20 +31,14 @@ export default class TemplatePage extends React.Component {
       contentfulComponents[__typename]
     )
   }
+
   render() {
     const data = this.props.data.contentfulPage
     return (
-      <ThemeProvider theme={{
-        breakpoints: {
-          md: '768px',
-          lg: '996px'
-        }}
-      }>
+      <ThemeProvider theme={theme}>
         <DefaultStyles/>
         <div>
-          {data.components.map((component, i) =>
-            this.createContentfulComponent(component.id, component.__typename, i)
-          )}
+          {data.components.map((component, i) => this.createContentfulComponent(component.id, component.__typename, i))}
         </div>
       </ThemeProvider>
     )
