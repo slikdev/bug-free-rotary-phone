@@ -25,7 +25,8 @@ const PartnerContainer = styled.div`
   position: relative;
   padding-right: ${partnerSpacing};
   padding-bottom: ${partnerSpacing};
-  width: 80%;
+  flex-shrink: 0;
+  width: 25rem;
   ${up('md')} { width: calc(100% / 3); }
   ${up('lg')} { width: calc(100% / 4); }
 `
