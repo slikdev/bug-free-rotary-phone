@@ -29,7 +29,7 @@ export default ({ title, subtitle, imageLarge, imageMedium, imageSmall, fontColo
   `
 
   const Content = styled.div`
-    max-width: 996px;
+    max-width: 956px;
     width: 100%;
   `
 

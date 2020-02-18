@@ -59,7 +59,7 @@ export default ({ id }) => {
       height: 400px;
     }
     ${up('lg')} {
-      height: 450px;
+      height: 480px;
     }
   `
 
