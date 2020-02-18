@@ -20,7 +20,7 @@ export default ({ title, subtitle, imageLarge, imageMedium, imageSmall, fontColo
     }
     ${up('md')} {
       background-image: url(${imageMedium});
-      padding: 10rem 2rem;
+      padding: 8rem 2rem;
     }
     ${up('lg')} {
       background-image: url(${imageLarge});
@@ -34,10 +34,17 @@ export default ({ title, subtitle, imageLarge, imageMedium, imageSmall, fontColo
   `
 
   const ContainerTitle = styled.div`
-    margin-bottom: ${vars.SPACING_5};
+    margin-bottom: ${vars.SPACING_4};
     font-weight: ${vars.FONT_WEIGHT_BOLD};
     > * {
       color: ${fontColor} !important;
+      font-size: 2.6rem !important;
+    }
+    ${up('md')} {
+      margin-bottom: ${vars.SPACING_5};
+      > * {
+        font-size: 4.2rem !important;
+      }
     }
   `
 
