@@ -1,6 +1,6 @@
 import React from 'react'
 import BaseVideoCopyAction from '../BaseVideoCopyAction/BaseVideoCopyAction'
-import { BaseColumnGroup } from '../BaseColumnGroup/BaseColumnGroup'
+import { BaseColumnGroupSlider } from '../BaseColumnGroupSlider/BaseColumnGroupSlider'
 import { BaseVideoPlayer } from '../BaseVideoPlayer/BaseVideoPlayer'
 import styled from 'styled-components'
 import anime from 'animejs'
@@ -67,7 +67,7 @@ export class BaseVideoCopyActionGroup extends React.Component {
           />
         </VideoPlayerContainer>
         <Spacer ref={ this.spacerRef }/>
-        <BaseColumnGroup
+        <BaseColumnGroupSlider
           items={this.props.items.map((item, i) => (
             <BaseVideoCopyAction
               title={item.title}

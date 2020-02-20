@@ -4,6 +4,7 @@ import BaseBanner from '../../../BaseBanner/BaseBanner'
 import { BaseVideoPlayer } from '../../../BaseVideoPlayer/BaseVideoPlayer'
 import anime from 'animejs'
 import vars from '../../../../assets/css/vars/vars'
+import { only } from 'styled-breakpoints'
 
 const Container = styled.div`
   width: 100%;
@@ -12,6 +13,11 @@ const Container = styled.div`
   padding-top: ${props => props.columns > 1 ? 'calc(100% / 3 * 2)' : 'calc(100% / 16 * 9)'};
   margin-bottom: ${vars.SPACING_6};
   cursor: pointer;
+  ${only('sm')} {
+    ${({ columns }) => columns > 1 && `
+      margin-bottom: 0;
+    `}
+  }
 `
 
 const ImageThumbnail = styled.div`

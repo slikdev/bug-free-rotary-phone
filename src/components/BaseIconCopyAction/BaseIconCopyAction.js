@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
 import BaseButtonOutline from '../BaseButtonOutline/BaseButtonOutline'
-import { up } from 'styled-breakpoints'
+import { up, only } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
 
 export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, buttonColor, buttonLink, columns }) => {
@@ -11,6 +11,19 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
     flex-direction: column;
     align-items: center;
     text-align: center;
+    ${only('sm')} {
+      ${columns > 1 && `
+        width: 72vw;
+        box-shadow: ${vars.BOX_SHADOW_1};
+        border-radius: ${vars.BORDER_RADIUS_1};
+        background: ${vars.COLOR_WHITE_1};
+        overflow: hidden;
+        padding: ${vars.SPACING_6} ${vars.SPACING_4};
+        > *:not(:last-child) {
+          margin-bottom: ${vars.SPACING_4} !important;
+        }
+      `}
+    }
   `
 
   const IconContainer = styled.div`
@@ -38,6 +51,12 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
       ${columns >= 3 ? 'font-size: 2.2rem;' : null}
       ${columns >= 4 ? 'font-size: 2rem;' : null}
     }
+    ${only('sm')} {
+      ${columns > 1 && `
+        font-size: 1.9rem !important;
+        font-weight: ${vars.FONT_WEIGHT_BOLD};
+      `}
+    }
   `
 
   const Paragraph = styled.div`
@@ -46,6 +65,11 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
     font-size: 2rem;
     ${up('md')} {
       font-size: 1.8rem;
+    }
+    ${only('sm')} {
+      ${columns > 1 && `
+        font-size: 1.6rem !important;
+      `}
     }
   `
 

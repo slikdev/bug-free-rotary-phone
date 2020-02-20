@@ -6,6 +6,7 @@ import { DefaultStyles } from '../../assets/css/defaults/defaults'
 
 const theme = {
   breakpoints: {
+    sm: '0px',
     md: '768px',
     lg: '996px'
   }

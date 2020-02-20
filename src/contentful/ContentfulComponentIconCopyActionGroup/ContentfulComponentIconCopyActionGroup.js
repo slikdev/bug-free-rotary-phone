@@ -1,7 +1,7 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import BaseIconCopyAction from '../../components/BaseIconCopyAction/BaseIconCopyAction'
-import { BaseColumnGroup } from '../../components/BaseColumnGroup/BaseColumnGroup'
+import { BaseColumnGroupSlider } from '../../components/BaseColumnGroupSlider/BaseColumnGroupSlider'
 
 export default ({ id }) => {
   const data = useStaticQuery(
@@ -35,7 +35,7 @@ export default ({ id }) => {
   ).allContentfulComponentIconCopyActionGroup.nodes.find(item => item.id === id)
 
   return (
-    <BaseColumnGroup
+    <BaseColumnGroupSlider
       items={data.items.map((item, i) => (
         <BaseIconCopyAction
           icon={item.icon.file.url}
