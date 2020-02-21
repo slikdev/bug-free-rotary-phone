@@ -12,6 +12,7 @@ import ContentfulComponentPartners from './ContentfulComponentPartners/Contentfu
 import ContentfulComponentStickyActionBar from './ContentfulComponentStickyActionBar/ContentfulComponentStickyActionBar'
 import ContentfulComponentTerms from './ContentfulComponentTerms/ContentfulComponentTerms'
 import ContentfulComponentNav from './ContentfulComponentNav/ContentfulComponentNav'
+import ContentfulComponentCvp from './ContentfulComponentCvp/ContentfulComponentCvp'
 
 export default {
   ContentfulComponentSection,
@@ -27,5 +28,6 @@ export default {
   ContentfulComponentPartners,
   ContentfulComponentStickyActionBar,
   ContentfulComponentTerms,
-  ContentfulComponentNav
+  ContentfulComponentNav,
+  ContentfulComponentCvp
 }
