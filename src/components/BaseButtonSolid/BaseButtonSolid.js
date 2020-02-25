@@ -9,8 +9,8 @@ export default ({ text, color, href }) => {
     if (color === '#e40000') return {
       fontColor: '#ffffff',
       backgroundColor: '#e40000',
-      hoverFontColor: '#e40000',
-      hoverBackgroundColor: '#ffffff'
+      hoverFontColor: '#ffffff',
+      hoverBackgroundColor: '#ba0000'
     }
     if (color === '#ffffff') return {
       fontColor: '#e40000',
