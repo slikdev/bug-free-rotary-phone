@@ -43,8 +43,7 @@ export default ({ copyDesktop, copyMobile, buttonCopy, buttonLink }) => {
       <BaseButtonSolid
         text={buttonCopy}
         href={buttonLink}
-        backgroundColor={vars.COLOR_RED_1}
-        color={vars.COLOR_WHITE_1}
+        color="#e40000"
       />
     </Container>
   )

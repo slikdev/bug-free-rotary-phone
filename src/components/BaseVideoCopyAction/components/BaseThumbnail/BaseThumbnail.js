@@ -46,6 +46,10 @@ const PlayIcon = styled.img`
   left: 50%;
   transform: translate(-50%, -50%);
   height: 5rem;
+  transition: opacity ${vars.TRANSITION_SETTINGS};
+  ${Container}:hover & {
+    opacity: 0.8;
+  }
 `
 
 const VideoPlayerContainer = styled.div`

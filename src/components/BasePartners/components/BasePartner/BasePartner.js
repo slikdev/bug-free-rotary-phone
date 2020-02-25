@@ -3,6 +3,7 @@ import styled from 'styled-components'
 import BaseBanner from '../../../BaseBanner/BaseBanner'
 import BaseButtonText from '../../../BaseButtonText/BaseButtonText'
 import vars from '../../../../assets/css/vars/vars'
+import { up } from 'styled-breakpoints'
 
 export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, logo }) => {
   const Container = styled.a`
@@ -14,6 +15,12 @@ export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, l
     position: relative;
     width: 100%;
     overflow: hidden;
+    ${up('md')} {
+      transition: transform ${vars.TRANSITION_SETTINGS};
+      &:hover {
+        transform: translateY(-5px);
+      }
+    }
   `
 
   const LogoContainer = styled.div`

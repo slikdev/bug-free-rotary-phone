@@ -4,11 +4,22 @@ import vars from '../../assets/css/vars/vars'
 import { BaseLottie } from '../BaseLottie/BaseLottie'
 import { up } from 'styled-breakpoints'
 
-export default ({ title, paragraph, icon }) => {
+export default ({ title, paragraph, icon, theme }) => {
+
+  const themeVars = (() => {
+    if (theme === 'colored') return {
+      fontColor: vars.COLOR_BLACK_2
+    }
+    if (theme === 'white') return {
+      fontColor: vars.COLOR_WHITE_1
+    }
+  })()
+
   const Container = styled.div`
     display: flex;
     flex-direction: row;
     align-items: flex-start;
+    color: ${themeVars.fontColor};
     ${up('md')} {
       flex-direction: column;
       align-items: center;

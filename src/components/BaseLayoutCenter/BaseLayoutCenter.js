@@ -8,7 +8,7 @@ export default ({ slot, backgroundColorTop, backgroundColorBottom }) => {
     display: flex;
     justify-content: center;
     background: linear-gradient(to bottom, ${backgroundColorTop}, ${backgroundColorBottom});
-    padding: ${vars.SPACING_8} ${vars.SPACING_4};
+    padding: 4.5rem ${vars.SPACING_4};
   `
 
   const Content = styled.div`

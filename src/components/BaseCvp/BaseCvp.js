@@ -4,9 +4,24 @@ import BaseCvpItem from '../../components/BaseCvpItem/BaseCvpItem'
 import { up } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
 
-const itemHorizontalSpacing = '6rem'
+export default ({ paragraph, items, displayMathSymbols, theme }) => {
 
-export default ({ paragraph, items, displayMathOperators }) => {
+  const themeVars = (() => {
+    if (theme === 'colored') return {
+      fontColor: vars.COLOR_BLACK_2,
+      logo: require('../../assets/img/logo-ff-color.svg'),
+      plusIcon: require('../../assets/img/plus-red.svg'),
+      equalsIcon: require('../../assets/img/equals-red.svg')
+    }
+    if (theme === 'white') return {
+      fontColor: vars.COLOR_WHITE_1,
+      logo: require('../../assets/img/logo-ff-white.svg'),
+      plusIcon: require('../../assets/img/plus-white.svg'),
+      equalsIcon: require('../../assets/img/equals-white.svg')
+    }
+  })()
+
+  const itemHorizontalSpacing = '3rem'
 
   const Container = styled.div`
     display: flex;
@@ -26,7 +41,7 @@ export default ({ paragraph, items, displayMathOperators }) => {
     margin-bottom: 9rem;
     position: relative;
     > *:not(:last-child) {
-      margin-bottom: ${displayMathOperators ? '0' : '5rem'};
+      margin-bottom: ${displayMathSymbols ? '0' : '5rem'};
     }
     ${up('md')} {
       flex-direction: row;
@@ -43,7 +58,7 @@ export default ({ paragraph, items, displayMathOperators }) => {
   `
 
   const MathIconContainer = styled.div`
-    display: ${displayMathOperators ? 'flex' : 'none'};
+    display: ${displayMathSymbols ? 'flex' : 'none'};
     justify-content: center;
     align-items: center;
     margin: 0 !important;
@@ -86,6 +101,7 @@ export default ({ paragraph, items, displayMathOperators }) => {
     font-size: 1.6rem;
     line-height: 1.6;
     text-align: center;
+    color: ${themeVars.fontColor};
     ${up('md')} {
       text-align: left;
     }
@@ -98,34 +114,38 @@ export default ({ paragraph, items, displayMathOperators }) => {
           title={items[0].title}
           paragraph={items[0].paragraph}
           icon={items[0].icon}
+          theme={theme}
         />
         <MathIconContainer style={{ left: `calc(25% - (${itemHorizontalSpacing} / 2) + (0.25 * ${itemHorizontalSpacing}))` }}>
-          <MathIcon src={require('../../assets/img/plus.svg')}/>
+          <MathIcon src={themeVars.plusIcon}/>
         </MathIconContainer>
         <BaseCvpItem
           title={items[1].title}
           paragraph={items[1].paragraph}
           icon={items[1].icon}
+          theme={theme}
         />
         <MathIconContainer style={{ left: `calc(50% - (${itemHorizontalSpacing} / 2) + (0.50 * ${itemHorizontalSpacing}))` }}>
-          <MathIcon src={require('../../assets/img/plus.svg')}/>
+          <MathIcon src={themeVars.plusIcon}/>
         </MathIconContainer>
         <BaseCvpItem
           title={items[2].title}
           paragraph={items[2].paragraph}
           icon={items[2].icon}
+          theme={theme}
         />
         <MathIconContainer style={{ left: `calc(75% - (${itemHorizontalSpacing} / 2) + (0.75 * ${itemHorizontalSpacing}))` }}>
-          <MathIcon src={require('../../assets/img/equals.svg')}/>
+          <MathIcon src={themeVars.equalsIcon}/>
         </MathIconContainer>
         <BaseCvpItem
           title={items[3].title}
           paragraph={items[3].paragraph}
           icon={items[3].icon}
+          theme={theme}
         />
       </Content>
       <Footer>
-        <Img src={require('../../assets/img/logo-ff.svg')}/>
+        <Img src={themeVars.logo}/>
         <Paragraph dangerouslySetInnerHTML={{ __html: paragraph }}/>
       </Footer>
     </Container>

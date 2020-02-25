@@ -2,15 +2,24 @@ import React from 'react'
 import styled from 'styled-components'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
 import BaseButtonOutline from '../BaseButtonOutline/BaseButtonOutline'
+import BaseButtonSolid from '../BaseButtonSolid/BaseButtonSolid'
 import { up, only } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
 
 export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, buttonColor, buttonLink, columns }) => {
+
+  const button = (() => {
+    if (buttonStyle === 'text') return <BaseButtonText text={ buttonCopy } color={ buttonColor } href={ buttonLink }/>
+    else if (buttonStyle === 'outline') return <BaseButtonOutline text={ buttonCopy } color={ buttonColor } href={ buttonLink }/>
+    else if (buttonStyle === 'solid') return <BaseButtonSolid text={ buttonCopy } color={ buttonColor } href={ buttonLink }/>
+  })()
+
   const Container = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+    color: ${fontColor};
     ${only('sm')} {
       ${columns > 1 && `
         width: 72vw;
@@ -27,14 +36,13 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
   `
 
   const IconContainer = styled.div`
-    width: 4rem;
-    height: 4rem;
+    width: 8.4rem;
+    height: 8.4rem;
     display: flex;
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-bottom: ${vars.SPACING_6};
-    color: ${fontColor};
+    margin-bottom: ${vars.SPACING_4};
   `
 
   const Icon = styled.img`
@@ -84,8 +92,7 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
       <Paragraph>
         { paragraph }
       </Paragraph>
-      { buttonStyle === 'text' ? <BaseButtonText text={ buttonCopy } color={ buttonColor } href={ buttonLink }/> : null }
-      { buttonStyle === 'outline' ? <BaseButtonOutline text={ buttonCopy } color={ buttonColor } href={ buttonLink }/> : null }
+      { button }
     </Container>
   )
 }

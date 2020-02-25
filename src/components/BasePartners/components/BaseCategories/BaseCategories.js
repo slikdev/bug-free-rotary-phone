@@ -44,6 +44,10 @@ export default ({ categories, onCategorySelected, selectedCategoryIndex }) => {
     color: ${props => props.active ? vars.COLOR_WHITE_1 : vars.COLOR_BLACK_2};
     background: ${props => props.active ? vars.COLOR_RED_1 : vars.COLOR_WHITE_1};
     cursor: pointer;
+    transition: border-color ${vars.TRANSITION_SETTINGS};
+    &:hover {
+      border-color: ${vars.COLOR_RED_1};
+    }
   `
 
   const CategoryDropdownContainer = styled.div`

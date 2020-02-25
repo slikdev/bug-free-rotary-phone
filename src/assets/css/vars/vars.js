@@ -19,10 +19,12 @@ export default {
   SPACING_9: '10rem',
   BOX_SHADOW_1: 'rgba(0, 0, 0, 0.15) 0px 1px 3px 0px',
   BOX_SHADOW_2: 'rgba(0, 0, 0, 0.08) 0px 1px 2px 0px',
+  BOX_SHADOW_3: 'rgba(0, 0, 0, 0.10) 0px 4px 15px 0px',
   BORDER_RADIUS_1: '3px',
   BORDER_RADIUS_2: '10px',
   FONT_WEIGHT_REGULAR: '300',
   FONT_WEIGHT_BOLD: '500',
+  TRANSITION_SETTINGS: '0.2s ease-out',
   CVP_ICON_CONTAINER_SIZE_LG: '100px',
   CVP_ICON_CONTAINER_SIZE_SM: '100px'
 }

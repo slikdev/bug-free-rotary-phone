@@ -9,10 +9,11 @@ export default ({ id }) => {
         allContentfulComponentCvp {
           nodes {
             id
+            theme
             supportingCopy {
               supportingCopy
             }
-            displayMathOperators
+            displayMathSymbols
             items {
               title
               paragraph {
@@ -39,8 +40,9 @@ export default ({ id }) => {
   return (
     <BaseCvp
       items={items}
-      displayMathOperators={data.displayMathOperators}
+      displayMathSymbols={data.displayMathSymbols}
       paragraph={data.supportingCopy.supportingCopy}
+      theme={data.theme}
     />
   )
 }
