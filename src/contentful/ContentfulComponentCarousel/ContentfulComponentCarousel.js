@@ -16,6 +16,9 @@ export default ({ id }) => {
               title {
                 title
               }
+              caption {
+                caption
+              }
               subtitle {
                 subtitle
               }
@@ -35,6 +38,10 @@ export default ({ id }) => {
                 }
               }
               fontColor
+              buttonCopy
+              buttonStyle
+              buttonColor
+              buttonLink
             }
           }
         }
@@ -44,11 +51,16 @@ export default ({ id }) => {
 
   const slides = data.slides.map(slide => ({
     title: slide.title.title,
-    subtitle: slide.subtitle.subtitle,
+    caption: slide.caption && slide.caption.caption,
+    subtitle: slide.subtitle && slide.subtitle.subtitle,
     imageLarge: slide.imageLarge.file.url,
     imageMedium: slide.imageMedium.file.url,
     imageSmall: slide.imageSmall.file.url,
-    fontColor: slide.fontColor
+    fontColor: slide.fontColor,
+    buttonCopy: slide.buttonCopy,
+    buttonStyle: slide.buttonStyle || 'outline',
+    buttonColor: slide.buttonColor || '#e40000',
+    buttonLink: slide.buttonLink || ''
   }))
 
   const Container = styled.div`

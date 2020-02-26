@@ -18,11 +18,8 @@ const NavigationContainer = styled.div`
   left: 50%;
   max-width: 996px;
   transform: translateX(-50%);
-  display: none;
   z-index: 1;
-  ${up('lg')} {
-    display: block;
-  }
+  pointer-events: none;
 `
 
 const PaginationContainer = styled.div`
@@ -32,6 +29,7 @@ const PaginationContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  pointer-events: all;
 `
 
 const PlayPauseButton = styled.img`
@@ -53,8 +51,13 @@ const NavigationButton = styled.img`
   cursor: pointer;
   z-index: 1;
   opacity: 0;
+  pointer-events: all;
   ${Container}:hover & {
     opacity: 1;
+  }
+  display: none;
+  ${up('lg')} {
+    display: block;
   }
 `
 
