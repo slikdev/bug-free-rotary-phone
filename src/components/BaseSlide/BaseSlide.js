@@ -1,12 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
-import { up } from 'styled-breakpoints'
+import { up, only } from 'styled-breakpoints'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
 import BaseButtonOutline from '../BaseButtonOutline/BaseButtonOutline'
 import BaseButtonSolid from '../BaseButtonSolid/BaseButtonSolid'
 import vars from '../../assets/css/vars/vars'
 
-export default ({ title, caption, subtitle, imageLarge, imageMedium, imageSmall, fontColor, buttonCopy, buttonColor, buttonStyle, buttonLink }) => {
+export default ({ title, caption, subtitle, imageLarge, imageMedium, imageSmall, fontColor, buttonCopy, buttonColor, buttonStyle, buttonLink, alignContentMobile }) => {
+
   const Container = styled.div`
     width: 100%;
     height: 100%;
@@ -28,13 +29,35 @@ export default ({ title, caption, subtitle, imageLarge, imageMedium, imageSmall,
   `
 
   const Content = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     max-width: 956px;
     width: 100%;
+    ${only('sm')} {
+      ${alignContentMobile === 'center-center' && `
+        text-align: center;
+        justify-content: center;
+        align-items: center;
+        br {
+          content: '';
+          &::after {
+            content: ' ';
+          }
+        }
+      `}
+    }
   `
 
   const Title = styled.div`
     font-weight: ${vars.FONT_WEIGHT_BOLD};
     font-size: 2.6rem;
+    ${only('sm')} {
+      ${alignContentMobile === 'center-center' && `
+        font-size: 3.5rem;
+      `}
+    }
     ${up('md')} {
       font-size: 4.2rem;
     }

@@ -42,6 +42,7 @@ export default ({ id }) => {
               buttonStyle
               buttonColor
               buttonLink
+              alignContentMobile
             }
           }
         }
@@ -60,7 +61,8 @@ export default ({ id }) => {
     buttonCopy: slide.buttonCopy,
     buttonStyle: slide.buttonStyle || 'outline',
     buttonColor: slide.buttonColor || '#e40000',
-    buttonLink: slide.buttonLink || ''
+    buttonLink: slide.buttonLink || '',
+    alignContentMobile: slide.alignContentMobile
   }))
 
   const Container = styled.div`
