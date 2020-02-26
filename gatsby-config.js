@@ -24,7 +24,6 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-polyfill-io`,
-    `gatsby-plugin-styled-components`
+    `gatsby-plugin-polyfill-io`
   ]
 }
