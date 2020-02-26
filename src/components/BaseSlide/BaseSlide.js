@@ -47,7 +47,10 @@ export default ({ title, caption, subtitle, imageLarge, imageMedium, imageSmall,
 
   const Subtitle = styled.div`
     margin-top: ${vars.SPACING_3};
-    font-size: 2.2rem;
+    font-size: 1.8rem;
+    ${up('md')} {
+      font-size: 2.2rem;
+    }
   `
 
   const Button = styled.div`
