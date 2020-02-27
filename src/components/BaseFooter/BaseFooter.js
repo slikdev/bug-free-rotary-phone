@@ -43,6 +43,7 @@ export default ({ slotLinks, slotSocialButtons }) => {
   const ClickoutIcon = styled.img`
     height: 1em;
     margin-left: ${vars.SPACING_2};
+    display: block;
   `
 
   return (

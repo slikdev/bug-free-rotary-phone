@@ -15,6 +15,7 @@ export default ({ text, color, href, as }) => {
 
   const Arrow = styled.svg`
     height: calc(0.45 * 1em);
+    width: 11.27px;
     margin-left: ${vars.SPACING_2};
     flex-shrink: 0;
     transition: transform ${vars.TRANSITION_SETTINGS};

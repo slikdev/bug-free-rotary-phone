@@ -39,6 +39,7 @@ export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, button
     margin-bottom: ${vars.SPACING_4};
     font-size: 2.6rem;
     line-height: 1.35;
+    max-width: 100%;
     ${only('sm')} {
       ${columns > 1 && `
         font-weight: ${vars.FONT_WEIGHT_BOLD};
@@ -55,6 +56,7 @@ export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, button
     margin-bottom: ${vars.SPACING_5};
     line-height: 1.6;
     font-size: 2rem;
+    max-width: 100%;
     ${up('md')} {
       font-size: 1.8rem;
     }

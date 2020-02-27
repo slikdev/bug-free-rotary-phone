@@ -54,6 +54,7 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
     margin-bottom: ${vars.SPACING_4};
     font-size: 2.6rem;
     line-height: 1.35;
+    max-width: 100%;
     ${up('md')} {
       font-size: 3rem;
       ${columns >= 3 ? 'font-size: 2.2rem;' : null}
@@ -71,6 +72,7 @@ export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, bu
     margin-bottom: ${vars.SPACING_5};
     line-height: 1.6;
     font-size: 2rem;
+    max-width: 100%;
     ${up('md')} {
       font-size: 1.8rem;
     }

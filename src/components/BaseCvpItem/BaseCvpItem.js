@@ -45,6 +45,7 @@ export default ({ title, paragraph, icon, theme }) => {
     flex-direction: column;
     align-items: flex-start;
     text-align: left;
+    width: 100%;
     ${up('md')} {
       align-items: center;
       text-align: center;
@@ -56,6 +57,7 @@ export default ({ title, paragraph, icon, theme }) => {
     font-weight: ${vars.FONT_WEIGHT_BOLD};
     line-height: 1.45;
     margin-bottom: 1rem;
+    max-width: 100%;
     ${up('md')} {
       margin-bottom: 2rem;
       font-size: 2rem;
@@ -65,6 +67,7 @@ export default ({ title, paragraph, icon, theme }) => {
   const Paragraph = styled.div`
     font-size: 1.6rem;
     line-height: 1.6;
+    max-width: 100%;
   `
 
   return (

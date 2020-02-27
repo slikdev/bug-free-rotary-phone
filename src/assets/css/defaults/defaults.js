@@ -28,8 +28,8 @@ export const DefaultStyles = createGlobalStyle`
   }
 
   a {
-    text-decoration: unset;
-    color: unset;
+    text-decoration: none;
+    color: inherit;
   }
 
   select:focus {

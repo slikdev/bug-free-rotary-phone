@@ -6,8 +6,12 @@ import vars from '../../assets/css/vars/vars'
 const Container = styled.div`
 width: 100%;
 display: flex;
+flex-direction: column;
 position: relative;
 overflow: auto;
+${up('md')} {
+  flex-direction: row;
+}
 > * {
   margin-right: ${vars.SPACING_4};
   min-width: 100%;
