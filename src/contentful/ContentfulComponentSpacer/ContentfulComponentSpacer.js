@@ -2,6 +2,11 @@ import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 
+const Spacer = styled.div`
+  width: 100%;
+  height: ${props => props.height};
+`
+
 export default ({ id }) => {
   const data = useStaticQuery(
     graphql`
@@ -16,10 +21,5 @@ export default ({ id }) => {
     `
   ).allContentfulComponentSpacer.nodes.find(item => item.id === id)
 
-  const Spacer = styled.div`
-    width: 100%;
-    height: ${data.height};
-  `
-
-  return <Spacer/>
+  return <Spacer height={ data.height }/>
 }

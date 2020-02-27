@@ -5,6 +5,18 @@ import { up } from 'styled-breakpoints'
 import { BaseSwiper } from '../../components/BaseSwiper/BaseSwiper'
 import BaseSlide from '../../components/BaseSlide/BaseSlide'
 
+const Container = styled.div`
+  width: 100%;
+  height: 360px;
+  position: relative;
+  ${up('md')} {
+    height: 400px;
+  }
+  ${up('lg')} {
+    height: 480px;
+  }
+`
+
 export default ({ id }) => {
   const data = useStaticQuery(
     graphql`
@@ -64,18 +76,6 @@ export default ({ id }) => {
     buttonLink: slide.buttonLink || '',
     alignContentMobile: slide.alignContentMobile
   }))
-
-  const Container = styled.div`
-    width: 100%;
-    height: 360px;
-    position: relative;
-    ${up('md')} {
-      height: 400px;
-    }
-    ${up('lg')} {
-      height: 480px;
-    }
-  `
 
   return (
   <Container>

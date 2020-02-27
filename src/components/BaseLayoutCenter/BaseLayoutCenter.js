@@ -7,7 +7,7 @@ export default ({ slot, backgroundColorTop, backgroundColorBottom }) => {
     width: 100%;
     display: flex;
     justify-content: center;
-    background: linear-gradient(to bottom, ${backgroundColorTop}, ${backgroundColorBottom});
+    background: linear-gradient(to bottom, ${props => props.backgroundColorTop}, ${props => props.backgroundColorBottom});
     padding: 4.5rem ${vars.SPACING_4};
   `
 
@@ -17,7 +17,9 @@ export default ({ slot, backgroundColorTop, backgroundColorBottom }) => {
   `
 
   return (
-    <Container>
+    <Container
+      backgroundColorTop={backgroundColorTop}
+      backgroundColorBottom={backgroundColorBottom}>
       <Content>
         { slot }
       </Content>

@@ -3,6 +3,23 @@ import { useStaticQuery, graphql } from 'gatsby'
 import styled from 'styled-components'
 import { down, up, only } from 'styled-breakpoints'
 
+const ImageSmall = styled.img`
+  width: 100%;
+  display: block;
+  ${up('md')} { display: none }
+`
+
+const ImageMedium = styled.img`
+  width: 100%;
+  display: none;
+  ${only('md')} { display: block }
+`
+const ImageLarge = styled.img`
+  width: 100%;
+  display: block;
+  ${down('md')} { display: none }
+`
+
 export default ({ id }) => {
   const data = useStaticQuery(
     graphql`
@@ -30,23 +47,6 @@ export default ({ id }) => {
       }
     `
   ).allContentfulComponentImageFullWidth.nodes.find(item => item.id === id)
-
-  const ImageSmall = styled.img`
-    width: 100%;
-    display: block;
-    ${up('md')} { display: none }
-  `
-
-  const ImageMedium = styled.img`
-    width: 100%;
-    display: none;
-    ${only('md')} { display: block }
-  `
-  const ImageLarge = styled.img`
-    width: 100%;
-    display: block;
-    ${down('md')} { display: none }
-  `
 
   return (
     <>

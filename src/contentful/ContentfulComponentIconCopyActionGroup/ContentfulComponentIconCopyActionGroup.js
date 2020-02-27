@@ -6,6 +6,19 @@ import { only } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
 import styled from 'styled-components'
 
+const Desktop = styled.div`
+  ${only('sm')} {
+    ${props => props.columns > 1 && 'display: none'}
+  }
+`
+
+const Mobile = styled.div`
+  display: none;
+  ${only('sm')} {
+    ${props => props.columns > 1 && 'display: block'}
+  }
+`
+
 export default ({ id }) => {
   const data = useStaticQuery(
     graphql`
@@ -39,22 +52,9 @@ export default ({ id }) => {
 
   const columns = data.items.length
 
-  const Desktop = styled.div`
-    ${only('sm')} {
-      ${columns > 1 && 'display: none'}
-    }
-  `
-
-  const Mobile = styled.div`
-    display: none;
-    ${only('sm')} {
-      ${columns > 1 && 'display: block'}
-    }
-  `
-
   return (
     <>
-      <Desktop>
+      <Desktop columns={ columns }>
         <BaseColumnGroupSlider
           items={data.items.map((item, i) => (
             <BaseIconCopyAction
@@ -72,7 +72,7 @@ export default ({ id }) => {
           ))}
         />
       </Desktop>
-      <Mobile>
+      <Mobile columns={ columns }>
         <BaseColumnGroupSlider
           items={data.items.map((item, i) => (
             <BaseIconCopyAction
