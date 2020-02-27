@@ -40,7 +40,7 @@ const QantasLink = styled.a`
 `
 
 const ClickoutIcon = styled.img`
-  height: 1em;
+  width: 16.8px;
   margin-left: ${vars.SPACING_2};
   display: block;
 `

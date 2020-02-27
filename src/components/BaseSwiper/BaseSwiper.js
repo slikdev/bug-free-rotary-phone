@@ -35,6 +35,7 @@ const PaginationContainer = styled.div`
 const PlayPauseButton = styled.img`
   position: relative;
   height: 1.3rem;
+  width: ${props => props.width};
   margin-right: 1rem;
   z-index: 1;
   cursor: pointer;
@@ -119,10 +120,8 @@ export class BaseSwiper extends React.Component {
             <PaginationContainer>
               <PlayPauseButton
                 onClick={ this.onClickPlayPause.bind(this) }
-                src={ this.state.autoplaying
-                  ? require('../../assets/img/pause.svg')
-                  : require('../../assets/img/play.svg')
-                }
+                src={ this.state.autoplaying ? require('../../assets/img/pause.svg') : require('../../assets/img/play.svg') }
+                width={ this.state.autoplaying ? '13px' : '10.05px' }
               />
               <div className="swiper-pagination"/>
             </PaginationContainer>
