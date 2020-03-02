@@ -3,6 +3,7 @@ import ContentfulComponentRichTextGroup from './ContentfulComponentRichTextGroup
 import ContentfulComponentCarousel from './ContentfulComponentCarousel/ContentfulComponentCarousel'
 import ContentfulComponentSpacer from './ContentfulComponentSpacer/ContentfulComponentSpacer'
 import ContentfulComponentFooter from './ContentfulComponentFooter/ContentfulComponentFooter'
+import ContentfulComponentForm from './ContentfulComponentForm/ContentfulComponentForm'
 import ContentfulComponentDivider from './ContentfulComponentDivider/ContentfulComponentDivider'
 import ContentfulComponentImageFullWidth from './ContentfulComponentImageFullWidth/ContentfulComponentImageFullWidth'
 import ContentfulComponentIconCopyActionGroup from './ContentfulComponentIconCopyActionGroup/ContentfulComponentIconCopyActionGroup'
@@ -20,6 +21,7 @@ export default {
   ContentfulComponentCarousel,
   ContentfulComponentSpacer,
   ContentfulComponentFooter,
+  ContentfulComponentForm,
   ContentfulComponentDivider,
   ContentfulComponentImageFullWidth,
   ContentfulComponentIconCopyActionGroup,

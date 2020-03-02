@@ -43,7 +43,7 @@ export default class TemplatePage extends React.Component {
     const data = this.props.data.contentfulPage
     return (
       <ThemeProvider theme={theme}>
-        <DefaultStyles/>
+        <DefaultStyles />
         <Page>
           {data.components.map((component, i) => this.createContentfulComponent(component.id, component.__typename, i))}
         </Page>
