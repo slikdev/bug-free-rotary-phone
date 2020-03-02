@@ -10,8 +10,13 @@ import BaseText2 from '../BaseText2/BaseText2'
 import SelectArrowDownSVG from '../../assets/img/select-arrow-down.svg'
 import FormErrorSVG from '../../assets/img/form-error.svg'
 import FormSuccessSVG from '../../assets/img/form-success.svg'
+import TickSVG from '../../assets/img/tick.svg'
 
 const Styles = {
+
+  Wrapper: styled.div`
+    
+  `,
 
   FormTitleWrapper: styled.div`
     text-align:center;
@@ -23,16 +28,31 @@ const Styles = {
     display:flex;
     flex-direction:row;
     flex-wrap:wrap;
-    width:600px;
+    width:100%;
     margin-left:auto;
     margin-right:auto;
+    background-color:${vars.COLOR_WHITE_1};
+    padding-top:50px;
+    padding-bottom:50px;
+    padding-left:50px;
+    padding-right:50px;
+    border-radius:3px;
+    box-shadow:${vars.BOX_SHADOW_2};
+
+    ${up('md')} {
+      width:640px;
+    }
   `,
 
   StatusWrapper: styled.div`
-    width:600px;
+    width:100%;
     margin-left:auto;
     margin-right:auto;
     padding:10px;
+
+    ${up('md')} {
+      width:600px;
+    }
   `,
 
   InputWrapper: styled.div`
@@ -41,9 +61,14 @@ const Styles = {
     padding-bottom:20px;
     padding-left:10px;
     padding-right:10px;
+    display:${ props => props.display || 'block' };
 
     ${up('md')} {
       width:${props => props.width || '100%'};
+    }
+
+    label{
+      line-height:18px;
     }
   `,
 
@@ -75,6 +100,29 @@ const Styles = {
 
     &:focus{
       border:2px solid ${vars.COLOR_BLUE_1};
+    }
+  `,
+  
+  CheckInput: styled.input`
+    border:2px solid ${vars.COLOR_GRAY_2};
+    padding:10px;
+    width:100%;
+    transition:border 0.6s;
+    height:48px;
+    align-items:center;
+    font-size:16px;
+    color:${vars.COLOR_BLACK_2};
+    margin-right:12px;
+
+    &:focus{
+      border:2px solid ${vars.COLOR_BLUE_1};
+    }
+
+    &:checked{
+      background-image:url(${TickSVG});
+      background-repeat:no-repeat;
+      background-position:4px 5px;
+      background-size:70%;
     }
   `,
   
@@ -116,6 +164,7 @@ const Styles = {
   Recaptcha: styled.div`
     width:100%;
     padding:0px 10px;
+    margin-bottom:20px;
   `,
 
   SubmitButton: styled.button`
@@ -157,58 +206,59 @@ const Styles = {
 
 export default ({name, fields, title, description}) => {
   return(
-    <NetlifyForm
-      name={name}
-      recaptcha={{
-        sitekey: '6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM',
-        size: 'normal'
+    <Styles.Wrapper>
+      <NetlifyForm
+        name={name}
+        recaptcha={{
+          sitekey: '6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM',
+          size: 'normal'
+        }}
+      >
+        {({ loading, error, recaptchaError, success, recaptcha }) => {
+          return(
+            <div>
+              <Styles.FormTitleWrapper>
+                <BaseText1 text={title} />
+                <BaseText2 text={description} />
+              </Styles.FormTitleWrapper>
+              <Styles.StatusWrapper>
+              { error && <Styles.StatusMessage color={vars.FORM_WARNING}><img src={FormErrorSVG} /> Your information was not sent. Please try again later.</Styles.StatusMessage> }
+              { recaptchaError && <Styles.StatusMessage color={vars.FORM_WARNING}><img src={FormErrorSVG} /> Recaptcha did not match. Please make sure the box is checked.</Styles.StatusMessage> }
+              { success && <Styles.StatusMessage color={vars.FORM_SUCCESS}><img src={FormSuccessSVG} /> Thank you for contacting us!</Styles.StatusMessage> }
+              </Styles.StatusWrapper>
+              {!loading && !success &&
+                <Styles.FieldWrapper>
+                  { fields.map((field, index) => ( 
+                      <Field 
+                        key={index} 
+                        name={field.name} 
+                        type={field.type[0]} 
+                        label={field.label} 
+                        required={field.required} 
+                        placeholder={field.placeholder}
+                        options={field.options}
+                        width={field.width[0]}
+                      /> 
+                    ))
+                  }
+                  <Styles.Recaptcha>{recaptcha}</Styles.Recaptcha>
+                  <Styles.InputWrapper>
+                    <Styles.SubmitButton type="submit">SUBMIT</Styles.SubmitButton>
+                    { loading && <BaseActivityIndicator color={vars.COLOR_RED_1} /> }
+                  </Styles.InputWrapper>
+                </Styles.FieldWrapper>
+              }
+            </div>  
+          )
       }}
-    >
-      {({ loading, error, recaptchaError, success, recaptcha }) => {
-        return(
-          <div>
-            <Styles.StatusWrapper>
-            { error && <Styles.StatusMessage color={vars.FORM_WARNING}><img src={FormErrorSVG} /> Your information was not sent. Please try again later.</Styles.StatusMessage> }
-            { recaptchaError && <Styles.StatusMessage color={vars.FORM_WARNING}><img src={FormErrorSVG} /> Recaptcha did not match. Please make sure the box is checked.</Styles.StatusMessage> }
-            { success && <Styles.StatusMessage color={vars.FORM_SUCCESS}><img src={FormSuccessSVG} /> Thank you for contacting us!</Styles.StatusMessage> }
-            </Styles.StatusWrapper>
-            {!loading && !success &&
-              <Styles.FieldWrapper>
-                <Styles.FormTitleWrapper>
-                  <BaseText1 text={title} />
-                  <BaseText2 text={description} />
-                </Styles.FormTitleWrapper>
-                
-                { fields.map((field, index) => ( 
-                    <Field 
-                      key={index} 
-                      name={field.name} 
-                      type={field.type[0]} 
-                      label={field.label} 
-                      required={field.required} 
-                      placeholder={field.placeholder}
-                      options={field.options}
-                      width={field.width[0]}
-                    /> 
-                  ))
-                }
-                <Styles.Recaptcha>{recaptcha}</Styles.Recaptcha>
-                <Styles.InputWrapper>
-                  <Styles.SubmitButton type="submit">SUBMIT</Styles.SubmitButton>
-                  { loading && <BaseActivityIndicator color={vars.COLOR_RED_1} /> }
-                </Styles.InputWrapper>
-              </Styles.FieldWrapper>
-            }
-          </div>  
-        )
-    }}
-    </NetlifyForm>
+      </NetlifyForm>
+    </Styles.Wrapper>
   )
 }
 
 const Field = ({name, type, label, required, placeholder, options, width}) => {
 
-  // console.log(name, type, label, required, placeholder, options, width)
+  let input = ''
 
   const getWidth = (w) => {
 
@@ -230,8 +280,6 @@ const Field = ({name, type, label, required, placeholder, options, width}) => {
 
   }
 
-  let input = ''
-
   switch(type){
     case 'text':
       input = ( 
@@ -247,6 +295,15 @@ const Field = ({name, type, label, required, placeholder, options, width}) => {
             <Styles.InputWrapper width={getWidth(width)}>
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
               <Styles.TextArea name={name} type={type} required={required} rows="10">{placeholder}</Styles.TextArea>
+            </Styles.InputWrapper> 
+          )
+    break;
+    
+    case 'checkbox':
+      input = ( 
+            <Styles.InputWrapper width={getWidth(width)} display="flex">
+              <Styles.CheckInput name={name} type={type} required={required} placeholder={placeholder} />
+              <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>   
             </Styles.InputWrapper> 
           )
     break;
