@@ -40,6 +40,8 @@ export default ({ id }) => {
     <BaseForm 
       name={data.slug} 
       fields={data.contentfulfields} 
+      title={data.title}
+      description={data.description.text}
     />
   )
 }

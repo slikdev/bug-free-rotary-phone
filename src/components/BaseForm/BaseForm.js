@@ -4,12 +4,20 @@ import { up } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
 import NetlifyForm from 'react-netlify-form'
 import BaseActivityIndicator from '../BaseActivityIndicator/BaseActivityIndicator'
+import BaseText1 from '../BaseText1/BaseText1'
+import BaseText2 from '../BaseText2/BaseText2'
 
 import SelectArrowDownSVG from '../../assets/img/select-arrow-down.svg'
 import FormErrorSVG from '../../assets/img/form-error.svg'
 import FormSuccessSVG from '../../assets/img/form-success.svg'
 
 const Styles = {
+
+  FormTitleWrapper: styled.div`
+    text-align:center;
+    padding:20px;
+    margin-bottom:20px;
+  `,
 
   FieldWrapper: styled.div`
     display:flex;
@@ -147,9 +155,7 @@ const Styles = {
 
 }
 
-export default ({name, fields}) => {
-
-  
+export default ({name, fields, title, description}) => {
   return(
     <NetlifyForm
       name={name}
@@ -168,6 +174,11 @@ export default ({name, fields}) => {
             </Styles.StatusWrapper>
             {!loading && !success &&
               <Styles.FieldWrapper>
+                <Styles.FormTitleWrapper>
+                  <BaseText1 text={title} />
+                  <BaseText2 text={description} />
+                </Styles.FormTitleWrapper>
+                
                 { fields.map((field, index) => ( 
                     <Field 
                       key={index} 
