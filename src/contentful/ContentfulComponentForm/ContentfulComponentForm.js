@@ -12,12 +12,22 @@ export default ({ id }) => {
             id
             name
             slug
+            title
+            description{
+              text:description
+            }
+            successMessage{
+              text:successMessage
+            }
             contentfulfields{
               ... on ContentfulFormInput{
                 name
                 type
                 label
                 required
+                placeholder
+                options
+                width
               }
             }
           }

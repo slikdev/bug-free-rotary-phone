@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="25px" height="25px" viewBox="0 0 25 25" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 62 (91390) - https://sketch.com -->
+    <title>Icons/Warning</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Icons/Warning" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M23.5286792,21.4347283 C23.4533859,21.4775085 23.3682725,21.5 23.2816745,21.5 L1.71832554,21.5 C1.58025435,21.5 1.45525435,21.4440356 1.36477215,21.3535534 C1.27428995,21.2630712 1.21832554,21.1380712 1.21832554,21 C1.21832554,20.913402 1.24081701,20.8282885 1.28359726,20.7529953 L12.0652717,1.77724824 C12.1334802,1.65720135 12.24389,1.57616622 12.3672594,1.54219493 C12.4906288,1.50822365 12.6269578,1.5213162 12.7470047,1.58952467 L23.7164027,20.7529953 C23.7846112,20.8730422 23.7977038,21.0093712 23.7637325,21.1327406 C23.7297612,21.25611 23.6487261,21.3665198 23.5286792,21.4347283 Z" id="Triangle" stroke="#323232"></path>
+        <text id="!" font-family="Ciutadella-Medium, Ciutadella" font-size="12" font-weight="400" fill="#323232">
+            <tspan x="11" y="17">!</tspan>
+        </text>
+    </g>
+</svg>
