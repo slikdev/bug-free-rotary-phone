@@ -6,6 +6,7 @@ import NetlifyForm from 'react-netlify-form'
 import BaseActivityIndicator from '../BaseActivityIndicator/BaseActivityIndicator'
 import BaseText1 from '../BaseText1/BaseText1'
 import BaseText2 from '../BaseText2/BaseText2'
+import { useForm } from 'react-hook-form'
 
 import SelectArrowDownSVG from '../../assets/img/select-arrow-down.svg'
 import FormErrorSVG from '../../assets/img/form-error.svg'
@@ -205,9 +206,53 @@ const Styles = {
 }
 
 export default ({name, fields, title, description}) => {
+
+  const encode = (data) => {
+    return Object.keys(data)
+      .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+      .join("&");
+  }
+
+  const { register, handleSubmit, errors } = useForm()
+
+  const onSubmit = data => {
+    console.log(data);
+
+    fetch("/", {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: encode({
+        "form-name": name,
+        data
+      })
+    })
+    .then((response) => console.log(response))
+    .catch(error => console.log(error))
+  }
+
   return(
     <Styles.Wrapper>
-      <NetlifyForm
+      <form name={name} data-netlify="true" onSubmit={handleSubmit(onSubmit)}>
+        <Styles.FieldWrapper>
+          { fields.map((field, index) => ( 
+              <Field 
+                key={index} 
+                name={field.name} 
+                type={field.type[0]} 
+                label={field.label} 
+                required={field.required} 
+                placeholder={field.placeholder}
+                options={field.options}
+                width={field.width[0]}
+              /> 
+            ))
+          }
+          <Styles.InputWrapper>
+            <Styles.SubmitButton type="submit">SUBMIT</Styles.SubmitButton>
+          </Styles.InputWrapper>
+        </Styles.FieldWrapper>
+      </form>
+      {/* <NetlifyForm
         name={name}
         recaptcha={{
           sitekey: '6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM',
@@ -222,9 +267,9 @@ export default ({name, fields, title, description}) => {
                 <BaseText2 text={description} />
               </Styles.FormTitleWrapper>
               <Styles.StatusWrapper>
-              { error && <Styles.StatusMessage color={vars.FORM_WARNING}><img src={FormErrorSVG} /> Your information was not sent. Please try again later.</Styles.StatusMessage> }
-              { recaptchaError && <Styles.StatusMessage color={vars.FORM_WARNING}><img src={FormErrorSVG} /> Recaptcha did not match. Please make sure the box is checked.</Styles.StatusMessage> }
-              { success && <Styles.StatusMessage color={vars.FORM_SUCCESS}><img src={FormSuccessSVG} /> Thank you for contacting us!</Styles.StatusMessage> }
+              { error && <Styles.StatusMessage color={vars.FORM_WARNING}><img alt="form-error" src={FormErrorSVG} /> Your information was not sent. Please try again later.</Styles.StatusMessage> }
+              { recaptchaError && <Styles.StatusMessage color={vars.FORM_WARNING}><img alt="form-error" src={FormErrorSVG} /> Recaptcha did not match. Please make sure the box is checked.</Styles.StatusMessage> }
+              { success && <Styles.StatusMessage color={vars.FORM_SUCCESS}><img alt="form-error" src={FormSuccessSVG} /> Thank you for contacting us!</Styles.StatusMessage> }
               </Styles.StatusWrapper>
               {!loading && !success &&
                 <Styles.FieldWrapper>
@@ -251,7 +296,7 @@ export default ({name, fields, title, description}) => {
             </div>  
           )
       }}
-      </NetlifyForm>
+      </NetlifyForm> */}
     </Styles.Wrapper>
   )
 }
@@ -264,17 +309,13 @@ const Field = ({name, type, label, required, placeholder, options, width}) => {
 
     let width = '100%'
 
-    if(w === 'Full')
-      width = '100%'
+    if(w === 'Full') width = '100%'
     
-    if(w === 'Half')
-      width = '50%'
+    if(w === 'Half') width = '50%'
     
-    if(w === 'Third')
-      width = '33.33333333333%'
+    if(w === 'Third') width = '33.33333333333%'
 
-    if(w === 'Quarter')
-      width = '25%'
+    if(w === 'Quarter') width = '25%'
     
     return width
 
