@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { up } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
@@ -213,9 +213,11 @@ export default ({name, fields, title, description}) => {
   }
 
   const { register, handleSubmit, errors } = useForm()
+  const [ loading, setLoading ] = useState(false)
 
   const onSubmit = data => {
-    console.log(data);
+    console.log(data)
+    setLoading(true)
 
     fetch("/", {
       method: "POST",
@@ -225,13 +227,24 @@ export default ({name, fields, title, description}) => {
         ...data
       })
     })
-    .then((response) => console.log(response))
-    .catch(error => console.log(error))
+    .then((response) => {
+      console.log(response)
+      setLoading(false)
+    })
+    .catch(error => {
+      console.log(error)
+      setLoading(false)
+    })
   }
 
   return(
     <Styles.Wrapper>
-      <form name={name} data-netlify="true" onSubmit={handleSubmit(onSubmit)}>
+      <form 
+        name={name} 
+        data-netlify="true" 
+        data-netlify-recaptcha="true"
+        onSubmit={handleSubmit(onSubmit)}
+      >
         <Styles.FieldWrapper>
           { fields.map((field, index) => ( 
               <Field 
@@ -247,8 +260,12 @@ export default ({name, fields, title, description}) => {
               /> 
             ))
           }
+          <Styles.Recaptcha>
+            <div data-netlify-recaptcha="true"></div>
+          </Styles.Recaptcha>
           <Styles.InputWrapper>
             <Styles.SubmitButton type="submit">SUBMIT</Styles.SubmitButton>
+            { loading && <BaseActivityIndicator color={vars.COLOR_RED_1} /> }
           </Styles.InputWrapper>
         </Styles.FieldWrapper>
       </form>
