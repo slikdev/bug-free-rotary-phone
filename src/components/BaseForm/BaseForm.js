@@ -214,6 +214,8 @@ export default ({name, fields, title, description}) => {
 
   const { register, handleSubmit, errors } = useForm()
   const [ loading, setLoading ] = useState(false)
+  const [ success, setSuccess ] = useState(false)
+  const [ error, setError ] = useState(false)
 
   const onSubmit = data => {
     console.log(data)
@@ -230,15 +232,26 @@ export default ({name, fields, title, description}) => {
     .then((response) => {
       console.log(response)
       setLoading(false)
+      setSuccess(true)
     })
     .catch(error => {
       console.log(error)
       setLoading(false)
+      setError(true)
     })
   }
 
   return(
     <Styles.Wrapper>
+      <Styles.FormTitleWrapper>
+        <BaseText1 text={title} />
+        <BaseText2 text={description} />
+      </Styles.FormTitleWrapper>
+      <Styles.StatusWrapper>
+      { error && <Styles.StatusMessage color={vars.FORM_WARNING}><img alt="form-error" src={FormErrorSVG} /> Your information was not sent. Please try again later.</Styles.StatusMessage> }
+      {/* { recaptchaError && <Styles.StatusMessage color={vars.FORM_WARNING}><img alt="form-error" src={FormErrorSVG} /> Recaptcha did not match. Please make sure the box is checked.</Styles.StatusMessage> } */}
+      { success && <Styles.StatusMessage color={vars.FORM_SUCCESS}><img alt="form-error" src={FormSuccessSVG} /> Thank you for contacting us!</Styles.StatusMessage> }
+      </Styles.StatusWrapper>
       <form 
         name={name} 
         data-netlify="true" 
