@@ -244,6 +244,7 @@ export default ({name, fields, title, description}) => {
                 placeholder={field.placeholder}
                 options={field.options}
                 width={field.width[0]}
+                register={register}
               /> 
             ))
           }
@@ -301,7 +302,7 @@ export default ({name, fields, title, description}) => {
   )
 }
 
-const Field = ({name, type, label, required, placeholder, options, width}) => {
+const Field = ({name, type, label, required, placeholder, options, width, register}) => {
 
   let input = ''
 
@@ -326,7 +327,7 @@ const Field = ({name, type, label, required, placeholder, options, width}) => {
       input = ( 
             <Styles.InputWrapper width={getWidth(width)}>
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-              <Styles.TextInput name={name} type={type} required={required} placeholder={placeholder} />
+              <Styles.TextInput name={name} type={type} placeholder={placeholder} ref={register({ required: required })} />
             </Styles.InputWrapper> 
           )
     break;
@@ -335,7 +336,7 @@ const Field = ({name, type, label, required, placeholder, options, width}) => {
       input = ( 
             <Styles.InputWrapper width={getWidth(width)}>
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-              <Styles.TextArea name={name} type={type} required={required} rows="10">{placeholder}</Styles.TextArea>
+              <Styles.TextArea name={name} type={type} rows="10" ref={register({ required: required })}>{placeholder}</Styles.TextArea>
             </Styles.InputWrapper> 
           )
     break;
@@ -343,7 +344,7 @@ const Field = ({name, type, label, required, placeholder, options, width}) => {
     case 'checkbox':
       input = ( 
             <Styles.InputWrapper width={getWidth(width)} display="flex">
-              <Styles.CheckInput name={name} type={type} required={required} placeholder={placeholder} />
+              <Styles.CheckInput name={name} type={type} placeholder={placeholder} ref={register({ required: required })} />
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>   
             </Styles.InputWrapper> 
           )
@@ -353,7 +354,7 @@ const Field = ({name, type, label, required, placeholder, options, width}) => {
         input = (
           <Styles.InputWrapper width={getWidth(width)}>
             <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-            <Styles.SelectInput name={name} defaultValue={'DEFAULT'} required>
+            <Styles.SelectInput name={name} defaultValue={'DEFAULT'} ref={register({ required: required })}>
               <option value="DEFAULT" disabled>Please select</option>
               { options.map((option, index) => (<option key={index} value={option}>{option}</option>)) }
             </Styles.SelectInput>
@@ -373,7 +374,7 @@ const Field = ({name, type, label, required, placeholder, options, width}) => {
       input = ( 
             <Styles.InputWrapper width={getWidth(width)}>
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-              <Styles.TextInput name={name} type={type} required={required} placeholder={placeholder} />
+              <Styles.TextInput name={name} type={type} placeholder={placeholder} ref={register({ required: required })} />
             </Styles.InputWrapper> 
           )
   }
