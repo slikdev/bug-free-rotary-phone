@@ -282,51 +282,6 @@ export default ({name, fields, title, description}) => {
           </Styles.InputWrapper>
         </Styles.FieldWrapper>
       </form>
-      {/* <NetlifyForm
-        name={name}
-        recaptcha={{
-          sitekey: '6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM',
-          size: 'normal'
-        }}
-      >
-        {({ loading, error, recaptchaError, success, recaptcha }) => {
-          return(
-            <div>
-              <Styles.FormTitleWrapper>
-                <BaseText1 text={title} />
-                <BaseText2 text={description} />
-              </Styles.FormTitleWrapper>
-              <Styles.StatusWrapper>
-              { error && <Styles.StatusMessage color={vars.FORM_WARNING}><img alt="form-error" src={FormErrorSVG} /> Your information was not sent. Please try again later.</Styles.StatusMessage> }
-              { recaptchaError && <Styles.StatusMessage color={vars.FORM_WARNING}><img alt="form-error" src={FormErrorSVG} /> Recaptcha did not match. Please make sure the box is checked.</Styles.StatusMessage> }
-              { success && <Styles.StatusMessage color={vars.FORM_SUCCESS}><img alt="form-error" src={FormSuccessSVG} /> Thank you for contacting us!</Styles.StatusMessage> }
-              </Styles.StatusWrapper>
-              {!loading && !success &&
-                <Styles.FieldWrapper>
-                  { fields.map((field, index) => ( 
-                      <Field 
-                        key={index} 
-                        name={field.name} 
-                        type={field.type[0]} 
-                        label={field.label} 
-                        required={field.required} 
-                        placeholder={field.placeholder}
-                        options={field.options}
-                        width={field.width[0]}
-                      /> 
-                    ))
-                  }
-                  <Styles.Recaptcha>{recaptcha}</Styles.Recaptcha>
-                  <Styles.InputWrapper>
-                    <Styles.SubmitButton type="submit">SUBMIT</Styles.SubmitButton>
-                    { loading && <BaseActivityIndicator color={vars.COLOR_RED_1} /> }
-                  </Styles.InputWrapper>
-                </Styles.FieldWrapper>
-              }
-            </div>  
-          )
-      }}
-      </NetlifyForm> */}
     </Styles.Wrapper>
   )
 }
