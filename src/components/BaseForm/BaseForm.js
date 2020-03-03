@@ -2,7 +2,6 @@ import React from 'react'
 import styled from 'styled-components'
 import { up } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
-import NetlifyForm from 'react-netlify-form'
 import BaseActivityIndicator from '../BaseActivityIndicator/BaseActivityIndicator'
 import BaseText1 from '../BaseText1/BaseText1'
 import BaseText2 from '../BaseText2/BaseText2'
@@ -223,7 +222,7 @@ export default ({name, fields, title, description}) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
         "form-name": name,
-        data
+        ...data
       })
     })
     .then((response) => console.log(response))
