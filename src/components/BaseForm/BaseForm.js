@@ -334,6 +334,8 @@ export default ({name, fields, title, description}) => {
               sitekey="6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM"
               onVerify={ recaptchaResponse => {
                 setRecaptcha(recaptchaResponse)
+                triggerValidation()
+                console.log(formState.isValid)
               }}
             />
           </Styles.Recaptcha>
@@ -442,7 +444,7 @@ const Field = ({name, type, label, required, placeholder, options, width, valida
             <Styles.RadioGroup>
               {options.map((option, index) => (
                 <Styles.RadioButton key={index}>
-                  <input id={`radio-${index}`} type="radio" name={name} value={option} ref={register({ required: true })} defaultChecked={(index < 1) ? true : false} />
+                  <input id={`radio-${index}`} type="radio" name={name} value={option} ref={register} defaultChecked={(index < 1) ? true : false} />
                   <Styles.RadioLabel htmlFor={`radio-${index}`}>{option}</Styles.RadioLabel>
                 </Styles.RadioButton>
               ))}
