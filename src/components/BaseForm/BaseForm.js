@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import styled from 'styled-components'
 import { up } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
@@ -35,13 +35,15 @@ const Styles = {
     background-color:${vars.COLOR_WHITE_1};
     padding-top:50px;
     padding-bottom:50px;
-    padding-left:50px;
-    padding-right:50px;
+    padding-left:10px;
+    padding-right:10px;
     border-radius:3px;
     box-shadow:${vars.BOX_SHADOW_2};
 
     ${up('md')} {
       width:640px;
+      padding-left:50px;
+      padding-right:50px;
     }
   `,
 
@@ -49,10 +51,11 @@ const Styles = {
     width:100%;
     margin-left:auto;
     margin-right:auto;
-    padding:10px;
+    
 
     ${up('md')} {
-      width:600px;
+      width:660px;
+      padding:10px 10px 0px 10px;
     }
   `,
 
@@ -198,7 +201,7 @@ const Styles = {
     background-color:${props => props.color || vars.FORM_WARNING};
     padding:12px 16px;
     font-size:14px;
-    margin-bottom:20px;
+    margin-bottom:0px;
     align-items:center;
     display:flex;
 
@@ -217,6 +220,7 @@ export default ({name, fields, title, description}) => {
       .join("&");
   }
 
+  const formRef = useRef(null)
   const { register, handleSubmit, errors, triggerValidation, formState } = useForm({ mode: 'onChange'})
   const [ loading, setLoading ] = useState(false)
   const [ success, setSuccess ] = useState(false)
@@ -247,20 +251,26 @@ export default ({name, fields, title, description}) => {
       body: payload
     })
     .then((response) => {
-      console.log(response)
       setLoading(false)
       setSuccess(true)
+      window.scrollTo({
+        top: formRef.current.offsetTop,
+        behavior: 'smooth',
+      })
     })
     .catch(error => {
-      console.log(error)
       setLoading(false)
       setError(true)
+      window.scrollTo({
+        top: formRef.current.offsetTop,
+        behavior: 'smooth',
+      })
     })
   }
 
   return(
     <Styles.Wrapper>
-      <Styles.FormTitleWrapper>
+      <Styles.FormTitleWrapper  ref={formRef}>
         <BaseText1 text={title} />
         <BaseText2 text={description} />
       </Styles.FormTitleWrapper>
