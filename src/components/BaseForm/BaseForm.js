@@ -311,6 +311,7 @@ export default ({name, fields, title, description}) => {
       <form 
         name={name} 
         data-netlify="true" 
+        data-netlify-recaptcha='true'
         onSubmit={handleSubmit(onSubmit)}
       >
         <Styles.FieldWrapper>
