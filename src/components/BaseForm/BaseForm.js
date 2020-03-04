@@ -279,6 +279,7 @@ export default ({name, fields, title, description}) => {
     .then((response) => {
       setLoading(false)
       setSuccess(true)
+      console.log(response)
       window.scrollTo({
         top: formRef.current.offsetTop,
         behavior: 'smooth',
@@ -289,6 +290,7 @@ export default ({name, fields, title, description}) => {
     .catch(error => {
       setLoading(false)
       setError(true)
+      console.log(error)
       window.scrollTo({
         top: formRef.current.offsetTop,
         behavior: 'smooth',
