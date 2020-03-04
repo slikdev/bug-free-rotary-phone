@@ -6,7 +6,7 @@ import BaseActivityIndicator from '../BaseActivityIndicator/BaseActivityIndicato
 import BaseText1 from '../BaseText1/BaseText1'
 import BaseText2 from '../BaseText2/BaseText2'
 import { useForm } from 'react-hook-form'
-import Reaptcha from 'reaptcha'
+import Recaptcha from 'react-google-recaptcha'
 
 import SelectArrowDownSVG from '../../assets/img/select-arrow-down.svg'
 import FormErrorSVG from '../../assets/img/form-error.svg'
@@ -331,7 +331,11 @@ export default ({name, fields, title, description}) => {
             ))
           }
           <Styles.Recaptcha>
-            <Reaptcha
+            <Recaptcha
+              sitekey={"6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM"}
+              onChange={handleRecaptcha}
+            />
+            {/* <Reaptcha
               ref={recaptchaRef}
               sitekey="6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM"
               onVerify={ recaptchaResponse => {
@@ -339,7 +343,7 @@ export default ({name, fields, title, description}) => {
                 triggerValidation()
                 console.log(formState.isValid)
               }}
-            />
+            /> */}
           </Styles.Recaptcha>
           <Styles.InputWrapper>
             <Styles.SubmitButton disabled={!recaptcha || !formState.isValid} type="submit">SUBMIT</Styles.SubmitButton>
