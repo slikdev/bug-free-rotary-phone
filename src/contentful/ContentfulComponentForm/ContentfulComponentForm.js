@@ -28,6 +28,7 @@ export default ({ id }) => {
                 placeholder
                 options
                 width
+                validation
               }
             }
           }

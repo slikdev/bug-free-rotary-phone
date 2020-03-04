@@ -6,6 +6,7 @@ import BaseActivityIndicator from '../BaseActivityIndicator/BaseActivityIndicato
 import BaseText1 from '../BaseText1/BaseText1'
 import BaseText2 from '../BaseText2/BaseText2'
 import { useForm } from 'react-hook-form'
+import Recaptcha from 'react-google-recaptcha'
 
 import SelectArrowDownSVG from '../../assets/img/select-arrow-down.svg'
 import FormErrorSVG from '../../assets/img/form-error.svg'
@@ -89,7 +90,7 @@ const Styles = {
   `,
 
   TextInput: styled.input`
-    border:2px solid ${vars.COLOR_GRAY_2};
+    border:2px solid ${props => props.error ? vars.FORM_ERROR : vars.COLOR_GRAY_2};
     padding:10px;
     width:100%;
     transition:border 0.6s;
@@ -104,7 +105,7 @@ const Styles = {
   `,
   
   CheckInput: styled.input`
-    border:2px solid ${vars.COLOR_GRAY_2};
+    border:2px solid ${props => props.error ? vars.FORM_ERROR : vars.COLOR_GRAY_2};
     padding:10px;
     width:100%;
     transition:border 0.6s;
@@ -127,7 +128,7 @@ const Styles = {
   `,
   
   TextArea: styled.textarea`
-    border:2px solid ${vars.COLOR_GRAY_2};
+    border:2px solid ${props => props.error ? vars.FORM_ERROR : vars.COLOR_GRAY_2};
     padding:10px;
     width:100%;
     transition:border 0.6s;
@@ -142,7 +143,7 @@ const Styles = {
   `,
   
   SelectInput: styled.select`
-    border:2px solid ${vars.COLOR_GRAY_2};
+    border:2px solid ${props => props.error ? vars.FORM_ERROR : vars.COLOR_GRAY_2};
     padding:10px;
     width:100%;
     transition:border 0.6s;
@@ -187,6 +188,10 @@ const Styles = {
       background-color: #ba0000;
       color: ${vars.COLOR_WHITE_1};
     }
+
+    &:disabled{
+      opacity:0.5;
+    }
   `,
 
   StatusMessage: styled.div`
@@ -212,10 +217,18 @@ export default ({name, fields, title, description}) => {
       .join("&");
   }
 
-  const { register, handleSubmit, errors } = useForm()
+  const { register, handleSubmit, errors, triggerValidation } = useForm({ mode: 'onChange'})
   const [ loading, setLoading ] = useState(false)
   const [ success, setSuccess ] = useState(false)
   const [ error, setError ] = useState(false)
+  const [ recaptcha, setRecaptcha ] = useState(null)
+
+  const handleRecaptcha = value => {
+    setRecaptcha(value)
+    triggerValidation()
+    console.log(errors)
+    console.log(errors.length)
+  }
 
   const onSubmit = data => {
     console.log(data)
@@ -226,6 +239,7 @@ export default ({name, fields, title, description}) => {
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: encode({
         "form-name": name,
+        "g-recaptcha-response": recaptcha,
         ...data
       })
     })
@@ -249,13 +263,11 @@ export default ({name, fields, title, description}) => {
       </Styles.FormTitleWrapper>
       <Styles.StatusWrapper>
       { error && <Styles.StatusMessage color={vars.FORM_WARNING}><img alt="form-error" src={FormErrorSVG} /> Your information was not sent. Please try again later.</Styles.StatusMessage> }
-      {/* { recaptchaError && <Styles.StatusMessage color={vars.FORM_WARNING}><img alt="form-error" src={FormErrorSVG} /> Recaptcha did not match. Please make sure the box is checked.</Styles.StatusMessage> } */}
       { success && <Styles.StatusMessage color={vars.FORM_SUCCESS}><img alt="form-error" src={FormSuccessSVG} /> Thank you for contacting us!</Styles.StatusMessage> }
       </Styles.StatusWrapper>
       <form 
         name={name} 
         data-netlify="true" 
-        data-netlify-recaptcha="true"
         onSubmit={handleSubmit(onSubmit)}
       >
         <Styles.FieldWrapper>
@@ -263,21 +275,26 @@ export default ({name, fields, title, description}) => {
               <Field 
                 key={index} 
                 name={field.name} 
-                type={field.type[0]} 
+                type={field.type} 
                 label={field.label} 
                 required={field.required} 
                 placeholder={field.placeholder}
                 options={field.options}
-                width={field.width[0]}
+                width={field.width}
+                validation={field.validation}
                 register={register}
+                error={errors[field.name]}
               /> 
             ))
           }
           <Styles.Recaptcha>
-            <div data-netlify-recaptcha="true"></div>
+            <Recaptcha
+              sitekey={"6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM"}
+              onChange={handleRecaptcha}
+            />
           </Styles.Recaptcha>
           <Styles.InputWrapper>
-            <Styles.SubmitButton type="submit">SUBMIT</Styles.SubmitButton>
+            <Styles.SubmitButton disabled={!recaptcha || errors.length} type="submit">SUBMIT</Styles.SubmitButton>
             { loading && <BaseActivityIndicator color={vars.COLOR_RED_1} /> }
           </Styles.InputWrapper>
         </Styles.FieldWrapper>
@@ -286,7 +303,7 @@ export default ({name, fields, title, description}) => {
   )
 }
 
-const Field = ({name, type, label, required, placeholder, options, width, register}) => {
+const Field = ({name, type, label, required, placeholder, options, width, validation, register, error}) => {
 
   let input = ''
 
@@ -294,15 +311,44 @@ const Field = ({name, type, label, required, placeholder, options, width, regist
 
     let width = '100%'
 
-    if(w === 'Full') width = '100%'
+    if(w === 'full') width = '100%'
     
-    if(w === 'Half') width = '50%'
+    if(w === 'half') width = '50%'
     
-    if(w === 'Third') width = '33.33333333333%'
+    if(w === 'third') width = '33.33333333333%'
 
-    if(w === 'Quarter') width = '25%'
+    if(w === 'quarter') width = '25%'
     
     return width
+
+  }
+
+  const Validator = (name) => {
+
+    let pattern = null
+
+    if(name === 'phone')
+      pattern = /^(?:\+?(61))? ?(?:\((?=.*\)))?(0?[2-57-8])\)? ?(\d\d(?:[- ](?=\d{3})|(?!\d\d[- ]?\d[- ]))\d\d[- ]?\d[- ]?\d{3})$/
+
+    if(name === 'email')  
+      pattern = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+    
+    if(name === 'dob')  
+      pattern = /^([0-2][0-9]|(3)[0-1])(\/)(((0)[0-9])|((1)[0-2]))(\/)\d{4}$/
+    
+    if(name === 'name')  
+      pattern = /^[a-zA-Z]+(([',. -][a-zA-Z ])?[a-zA-Z]*)*$/
+    
+    if(name === 'postcode')  
+      pattern = /^(?:(?:[2-8]\d|9[0-7]|0?[28]|0?9(?=09))(?:\d{2}))$/
+    
+    if(name === 'abn')  
+      pattern = /^(\d *?){11}$/
+    
+    if(name === 'qff')  
+      pattern = null
+
+    return pattern
 
   }
 
@@ -311,7 +357,7 @@ const Field = ({name, type, label, required, placeholder, options, width, regist
       input = ( 
             <Styles.InputWrapper width={getWidth(width)}>
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-              <Styles.TextInput name={name} type={type} placeholder={placeholder} ref={register({ required: required })} />
+              <Styles.TextInput name={name} type={type} error={error} placeholder={placeholder} ref={register({ required: required, pattern: Validator(validation) })} />
             </Styles.InputWrapper> 
           )
     break;
@@ -320,7 +366,7 @@ const Field = ({name, type, label, required, placeholder, options, width, regist
       input = ( 
             <Styles.InputWrapper width={getWidth(width)}>
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-              <Styles.TextArea name={name} type={type} rows="10" ref={register({ required: required })}>{placeholder}</Styles.TextArea>
+              <Styles.TextArea name={name} type={type} error={error} rows="10" ref={register({ required: required })}>{placeholder}</Styles.TextArea>
             </Styles.InputWrapper> 
           )
     break;
@@ -328,7 +374,7 @@ const Field = ({name, type, label, required, placeholder, options, width, regist
     case 'checkbox':
       input = ( 
             <Styles.InputWrapper width={getWidth(width)} display="flex">
-              <Styles.CheckInput name={name} type={type} placeholder={placeholder} ref={register({ required: required })} />
+              <Styles.CheckInput name={name} type={type} error={error} placeholder={placeholder} ref={register({ required: required })} />
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>   
             </Styles.InputWrapper> 
           )
@@ -338,7 +384,7 @@ const Field = ({name, type, label, required, placeholder, options, width, regist
         input = (
           <Styles.InputWrapper width={getWidth(width)}>
             <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-            <Styles.SelectInput name={name} defaultValue={'DEFAULT'} ref={register({ required: required })}>
+            <Styles.SelectInput name={name} error={error} defaultValue={'DEFAULT'} ref={register({ required: required })}>
               <option value="DEFAULT" disabled>Please select</option>
               { options.map((option, index) => (<option key={index} value={option}>{option}</option>)) }
             </Styles.SelectInput>
@@ -358,7 +404,7 @@ const Field = ({name, type, label, required, placeholder, options, width, regist
       input = ( 
             <Styles.InputWrapper width={getWidth(width)}>
               <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-              <Styles.TextInput name={name} type={type} placeholder={placeholder} ref={register({ required: required })} />
+              <Styles.TextInput name={name} type={type} error={error} placeholder={placeholder} ref={register({ required: required, pattern: Validator(validation) })} />
             </Styles.InputWrapper> 
           )
   }
