@@ -6,7 +6,7 @@ import BaseActivityIndicator from '../BaseActivityIndicator/BaseActivityIndicato
 import BaseText1 from '../BaseText1/BaseText1'
 import BaseText2 from '../BaseText2/BaseText2'
 import { useForm } from 'react-hook-form'
-import Recaptcha from 'react-google-recaptcha'
+import Reaptcha from 'reaptcha'
 
 import SelectArrowDownSVG from '../../assets/img/select-arrow-down.svg'
 import FormErrorSVG from '../../assets/img/form-error.svg'
@@ -165,6 +165,31 @@ const Styles = {
     }
   `,
 
+  RadioGroup: styled.div`
+    display:flex;
+    flex-direction:row;
+    flex-wrap:wrap;
+  `,
+  
+  RadioButton: styled.div`
+    input[type=radio]{
+      position: absolute;
+      visibility: hidden;
+    }
+
+    input[type=radio]:checked ~ label{
+      color:${vars.COLOR_RED_1};
+      border-color:${vars.COLOR_RED_1};
+    }
+  `,
+
+  RadioLabel: styled.label`
+    border:2px solid ${props => props.error ? vars.FORM_ERROR : vars.COLOR_GRAY_2};
+    padding:12px 18px;
+    font-size:16px;
+    margin:4px;
+  `,
+
   Recaptcha: styled.div`
     width:100%;
     padding:0px 10px;
@@ -221,7 +246,8 @@ export default ({name, fields, title, description}) => {
   }
 
   const formRef = useRef(null)
-  const { register, handleSubmit, errors, triggerValidation, formState } = useForm({ mode: 'onChange'})
+  const recaptchaRef = useRef(null)
+  const { register, handleSubmit, errors, triggerValidation, formState, reset } = useForm({ mode: 'onChange'})
   const [ loading, setLoading ] = useState(false)
   const [ success, setSuccess ] = useState(false)
   const [ error, setError ] = useState(false)
@@ -257,6 +283,8 @@ export default ({name, fields, title, description}) => {
         top: formRef.current.offsetTop,
         behavior: 'smooth',
       })
+      reset()
+      recaptchaRef.reset()
     })
     .catch(error => {
       setLoading(false)
@@ -301,9 +329,12 @@ export default ({name, fields, title, description}) => {
             ))
           }
           <Styles.Recaptcha>
-            <Recaptcha
-              sitekey={"6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM"}
-              onChange={handleRecaptcha}
+            <Reaptcha
+              ref={recaptchaRef}
+              sitekey="6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM"
+              onVerify={ recaptchaResponse => {
+                setRecaptcha(recaptchaResponse)
+              }}
             />
           </Styles.Recaptcha>
           <Styles.InputWrapper>
@@ -400,6 +431,22 @@ const Field = ({name, type, label, required, placeholder, options, width, valida
             <Styles.SelectInput name={name} error={error} defaultValue={options[0]} ref={register({ required: required })}>
               { options.map((option, index) => (<option key={index} value={option}>{option}</option>)) }
             </Styles.SelectInput>
+          </Styles.InputWrapper>
+        )
+    break;
+    
+    case 'radio':
+        input = (
+          <Styles.InputWrapper width={getWidth(width)}>
+            <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
+            <Styles.RadioGroup>
+              {options.map((option, index) => (
+                <Styles.RadioButton key={index}>
+                  <input id={`radio-${index}`} type="radio" name={name} value={option} ref={register({ required: true })} defaultChecked={(index < 1) ? true : false} />
+                  <Styles.RadioLabel htmlFor={`radio-${index}`}>{option}</Styles.RadioLabel>
+                </Styles.RadioButton>
+              ))}
+            </Styles.RadioGroup>
           </Styles.InputWrapper>
         )
     break;
