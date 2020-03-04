@@ -269,8 +269,6 @@ export default ({name, fields, title, description}) => {
       ...data
     })
 
-    console.log(data)
-
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -285,7 +283,7 @@ export default ({name, fields, title, description}) => {
         behavior: 'smooth',
       })
       reset()
-      recaptchaRef.reset()
+      // recaptchaRef.reset()
     })
     .catch(error => {
       setLoading(false)
