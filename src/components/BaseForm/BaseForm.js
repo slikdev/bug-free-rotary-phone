@@ -217,7 +217,7 @@ export default ({name, fields, title, description}) => {
       .join("&");
   }
 
-  const { register, handleSubmit, errors, triggerValidation } = useForm({ mode: 'onChange'})
+  const { register, handleSubmit, errors, triggerValidation, formState } = useForm({ mode: 'onChange'})
   const [ loading, setLoading ] = useState(false)
   const [ success, setSuccess ] = useState(false)
   const [ error, setError ] = useState(false)
@@ -226,22 +226,25 @@ export default ({name, fields, title, description}) => {
   const handleRecaptcha = value => {
     setRecaptcha(value)
     triggerValidation()
-    console.log(errors)
-    console.log(errors.length)
+    console.log(formState)
   }
 
   const onSubmit = data => {
-    console.log(data)
+    
     setLoading(true)
+
+    const payload = encode({
+      "form-name": name,
+      "g-recaptcha-response": recaptcha,
+      ...data
+    })
+
+    console.log(data)
 
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: encode({
-        "form-name": name,
-        "g-recaptcha-response": recaptcha,
-        ...data
-      })
+      body: payload
     })
     .then((response) => {
       console.log(response)
@@ -294,7 +297,7 @@ export default ({name, fields, title, description}) => {
             />
           </Styles.Recaptcha>
           <Styles.InputWrapper>
-            <Styles.SubmitButton disabled={!recaptcha || errors.length} type="submit">SUBMIT</Styles.SubmitButton>
+            <Styles.SubmitButton disabled={!recaptcha || !formState.isValid} type="submit">SUBMIT</Styles.SubmitButton>
             { loading && <BaseActivityIndicator color={vars.COLOR_RED_1} /> }
           </Styles.InputWrapper>
         </Styles.FieldWrapper>
@@ -384,8 +387,7 @@ const Field = ({name, type, label, required, placeholder, options, width, valida
         input = (
           <Styles.InputWrapper width={getWidth(width)}>
             <Styles.InputLabel htmlFor={name}>{label}{(required ? <Styles.RequiredAsterix> *</Styles.RequiredAsterix> : "")}</Styles.InputLabel>
-            <Styles.SelectInput name={name} error={error} defaultValue={'DEFAULT'} ref={register({ required: required })}>
-              <option value="DEFAULT" disabled>Please select</option>
+            <Styles.SelectInput name={name} error={error} defaultValue={options[0]} ref={register({ required: required })}>
               { options.map((option, index) => (<option key={index} value={option}>{option}</option>)) }
             </Styles.SelectInput>
           </Styles.InputWrapper>
