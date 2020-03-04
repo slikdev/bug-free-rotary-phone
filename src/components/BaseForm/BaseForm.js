@@ -269,6 +269,8 @@ export default ({name, fields, title, description}) => {
       ...data
     })
 
+    console.log(payload)
+
     fetch("/", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
