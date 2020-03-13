@@ -256,7 +256,7 @@ export default ({name, fields, title, description}) => {
   const handleRecaptcha = value => {
     setRecaptcha(value)
     triggerValidation()
-    console.log(formState)
+    console.log(recaptchaRef)
   }
 
   const onSubmit = data => {
@@ -265,13 +265,13 @@ export default ({name, fields, title, description}) => {
 
     const payload = encode({
       "form-name": name,
-      "g-recaptcha-response": recaptcha,
+      "recaptcha": recaptcha,
       ...data
     })
 
     console.log(payload)
 
-    fetch("/", {
+    fetch("https://discover-qbr-form.herokuapp.com/entries", {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: payload
@@ -285,7 +285,11 @@ export default ({name, fields, title, description}) => {
         behavior: 'smooth',
       })
       reset()
-      // recaptchaRef.reset()
+      recaptchaRef.current.reset()
+
+      setTimeout(() => {
+        setSuccess(false)
+      }, 5000)
     })
     .catch(error => {
       setLoading(false)
@@ -333,18 +337,10 @@ export default ({name, fields, title, description}) => {
           }
           <Styles.Recaptcha>
             <Recaptcha
+              ref={recaptchaRef}
               sitekey={"6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM"}
               onChange={handleRecaptcha}
             />
-            {/* <Reaptcha
-              ref={recaptchaRef}
-              sitekey="6Lf-z90UAAAAAESGvDKQSmKgl-DOAaGW6B7VcjjM"
-              onVerify={ recaptchaResponse => {
-                setRecaptcha(recaptchaResponse)
-                triggerValidation()
-                console.log(formState.isValid)
-              }}
-            /> */}
           </Styles.Recaptcha>
           <Styles.InputWrapper>
             <Styles.SubmitButton disabled={!recaptcha || !formState.isValid} type="submit">SUBMIT</Styles.SubmitButton>
