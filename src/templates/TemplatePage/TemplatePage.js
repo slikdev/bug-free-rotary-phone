@@ -15,7 +15,6 @@ const theme = {
 const Page = styled.div`
   width: 100%;
   height: auto;
-  overflow: hidden;
 `
 
 export const query = graphql`
