@@ -46,7 +46,7 @@ export default class TemplatePage extends React.Component {
 
   constructor (props) {
     super(props)
-    this.props.data.contentfulPage.redirect && (window.location = this.props.data.contentfulPage.redirect)
+    window && this.props.data.contentfulPage.redirect && (window.location = this.props.data.contentfulPage.redirect)
   }
 
   createContentfulComponent(id, __typename, i) {
@@ -82,5 +82,3 @@ export default class TemplatePage extends React.Component {
     )
   }
 }
-
-// Test
