@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql, navigate } from 'gatsby'
+import { graphql } from 'gatsby'
 import contentfulComponents from '../../contentful/components'
 import styled, { ThemeProvider } from 'styled-components'
 import { DefaultStyles } from '../../assets/css/defaults/defaults'

@@ -32,7 +32,7 @@ const SocialButtonsContainer = styled.div`
   > *:not(:last-child) { margin-right: ${vars.SPACING_5} }
 `
 
-const QantasLink = styled.a`
+const BrandLink = styled.a`
   display: flex;
   color: ${vars.COLOR_RED_1};
   position: relative;
@@ -55,7 +55,7 @@ export default ({ slotLinks, slotSocialButtons }) => {
       <SocialButtonsContainer>
         { slotSocialButtons }
       </SocialButtonsContainer>
-      <QantasLink href="https://www.qantas.com/">qantas<ClickoutIcon src={require('../../assets/img/clickout.svg')}/></QantasLink>
+      <BrandLink href={process.env.HOME_URL}>{process.env.BRAND_NAME}<ClickoutIcon src={require('../../assets/img/clickout.svg')}/></BrandLink>
     </Container>
   )
 }
