@@ -2,28 +2,13 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:11.12.0
+      - image: circleci/node:latest
     steps:
       - checkout
-      - restore_cache:
-          name: Restore Yarn Package Cache
-          keys:
-            - yarn-packages-{{ checksum "yarn.lock" }}
-      - run:
-          name: Install node modules
-          command: yarn install --frozen-lockfile
-      - run:
-          name: Build
-          command: yarn build
       - run:
           name: Deploy
           command:
-            git config --global user.email 'build@circleci.com' &&
+            git config --global user.email 'circleci@circleci.com' &&
             git config --global user.name 'circleci' &&
             git commit --allow-empty -m 'circleci' &&
             git push https://heroku:$HEROKU_API_KEY@git.heroku.com/$HEROKU_APP_NAME.git --force
-      - save_cache:
-          name: Save Yarn Package Cache
-          key: yarn-packages-{{ checksum "yarn.lock" }}
-          paths:
-            - ~/.cache/yarn
