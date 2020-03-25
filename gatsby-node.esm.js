@@ -1,5 +1,15 @@
 import * as path from 'path'
 
+export const sourceNodes = ({ actions }) => {
+  const { createTypes } = actions
+  const typeDefs = `
+    type ContentfulPage implements Node @infer {
+      redirect: String
+    }
+  `
+  createTypes(typeDefs)
+}
+
 export const createPages = async ({ graphql, actions }) => {
   const pageTemplate = path.resolve('./src/templates/TemplatePage/TemplatePage.js')
   const result = await graphql(`
