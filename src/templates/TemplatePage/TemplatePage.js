@@ -44,8 +44,11 @@ export const query = graphql`
 
 export default class TemplatePage extends React.Component {
 
-  componentDidMount () {
-    window && this.props.data.contentfulPage.redirect && (window.location = this.props.data.contentfulPage.redirect)
+  constructor (props) {
+    super(props)
+    if (typeof window !== 'undefined') {
+      props.data.contentfulPage.redirect && (window.location = props.data.contentfulPage.redirect)
+    }
   }
 
   createContentfulComponent(id, __typename, i) {
