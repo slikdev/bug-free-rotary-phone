@@ -1,5 +1,5 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, navigate } from 'gatsby'
 import contentfulComponents from '../../contentful/components'
 import styled, { ThemeProvider } from 'styled-components'
 import { DefaultStyles } from '../../assets/css/defaults/defaults'
@@ -44,8 +44,7 @@ export const query = graphql`
 
 export default class TemplatePage extends React.Component {
 
-  constructor (props) {
-    super(props)
+  componentDidMount () {
     window && this.props.data.contentfulPage.redirect && (window.location = this.props.data.contentfulPage.redirect)
   }
 
