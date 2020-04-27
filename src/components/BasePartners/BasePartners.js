@@ -54,6 +54,7 @@ export class BasePartners extends React.Component {
           { this.props.categories[this.state.selectedCategoryIndex].partners.map((partner, i) => (
             <PartnerContainer key={i}>
               <BasePartner
+                partner={partner.partner}
                 title={partner.title}
                 paragraph={partner.paragraph}
                 terms={partner.terms}

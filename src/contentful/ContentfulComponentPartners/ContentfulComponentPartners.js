@@ -12,6 +12,7 @@ export default ({ id }) => {
             categories {
               title
               partners {
+                partner
                 title
                 paragraph {
                   paragraph
@@ -38,6 +39,7 @@ export default ({ id }) => {
   const categories = data.categories.map(category => ({
     title: category.title,
     partners: category.partners.map(partner => ({
+      partner: partner.partner,
       title: partner.title,
       paragraph: partner.paragraph.paragraph,
       terms: partner.terms && partner.terms.terms,

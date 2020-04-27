@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import BaseBanner from '../../../BaseBanner/BaseBanner'
 import BaseButtonText from '../../../BaseButtonText/BaseButtonText'
@@ -93,8 +94,16 @@ const ButtonContainer = styled.div`
   }
 `
 
-export default ({ title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, logo }) => (
-  <Container href={ buttonLink }>
+const trackClick = partner => {
+  ReactGA.event({
+    category: 'Partner module',
+    action: 'Click',
+    label: `Partner tile - ${partner}`
+  })
+}
+
+export default ({ partner, title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, logo }) => (
+  <Container href={ buttonLink } onClick={() => trackClick(partner)} target="_blank">
     <LogoContainer>
       { bannerCopy
         ? (

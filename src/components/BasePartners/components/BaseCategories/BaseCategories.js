@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import vars from '../../../../assets/css/vars/vars'
 import { up } from 'styled-breakpoints'
@@ -80,12 +81,28 @@ const ArrowDown = styled.img`
   pointer-events: none;
 `
 
+const trackClick = category => {
+  ReactGA.event({
+    category: 'Partner module',
+    action: 'Click',
+    label: `Filter category - ${category}`
+  })
+}
+
 export default ({ categories, onCategorySelected, selectedCategoryIndex }) => (
   <Container>
     <CategoryTilesContainer>
       { categories.map((category, i) => (
         <TileContainer key={i}>
-          <Tile onClick={ () => onCategorySelected(i) } active={ selectedCategoryIndex === i }>
+          <Tile
+            onClick={
+              () => {
+                onCategorySelected(i)
+                trackClick(category.title)
+              }
+            }
+            active={ selectedCategoryIndex === i }
+          >
             { category.title }
           </Tile>
         </TileContainer>
