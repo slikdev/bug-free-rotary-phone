@@ -32,6 +32,7 @@ export default ({ id }) => {
                   url
                 }
               }
+              contentfulTitle
               title {
                 title
               }
@@ -43,6 +44,7 @@ export default ({ id }) => {
               buttonStyle
               buttonColor
               buttonLink
+              trackButtonClick
             }
           }
         }
@@ -58,6 +60,7 @@ export default ({ id }) => {
         <BaseColumnGroupSlider
           items={data.items.map((item, i) => (
             <BaseIconCopyAction
+              contentfulTitle={item.contentfulTitle}
               icon={item.icon.file.url}
               title={item.title.title}
               paragraph={item.paragraph.paragraph}
@@ -66,6 +69,7 @@ export default ({ id }) => {
               buttonStyle={item.buttonStyle}
               buttonColor={item.buttonColor}
               buttonLink={item.buttonLink}
+              trackButtonClick={item.trackButtonClick}
               columns={columns}
               key={i}
             />
@@ -76,6 +80,7 @@ export default ({ id }) => {
         <BaseColumnGroupSlider
           items={data.items.map((item, i) => (
             <BaseIconCopyAction
+              contentfulTitle={item.contentfulTitle}
               icon={item.icon.file.url}
               title={item.title.title}
               paragraph={item.paragraph.paragraph}
@@ -84,6 +89,7 @@ export default ({ id }) => {
               buttonStyle="text"
               buttonColor={vars.COLOR_RED_1}
               buttonLink={item.buttonLink}
+              trackButtonClick={item.trackButtonClick}
               columns={columns}
               key={i}
             />

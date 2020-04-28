@@ -81,40 +81,41 @@ const ArrowDown = styled.img`
   pointer-events: none;
 `
 
-const trackClick = category => {
-  ReactGA.event({
-    category: 'Partner module',
-    action: 'Click',
-    label: `Filter category - ${category}`
-  })
-}
+export default ({ categories, onCategorySelected, selectedCategoryIndex }) => {
 
-export default ({ categories, onCategorySelected, selectedCategoryIndex }) => (
-  <Container>
-    <CategoryTilesContainer>
-      { categories.map((category, i) => (
-        <TileContainer key={i}>
-          <Tile
-            onClick={
-              () => {
-                onCategorySelected(i)
-                trackClick(category.title)
-              }
-            }
-            active={ selectedCategoryIndex === i }
-          >
-            { category.title }
-          </Tile>
-        </TileContainer>
-      )) }
-    </CategoryTilesContainer>
-    <CategoryDropdownContainer>
-      <Dropdown onChange={e => onCategorySelected(parseInt(e.target.value))} value={selectedCategoryIndex}>
+  const trackEvent = (category) => {
+    ReactGA.event({
+      category: 'Partner Category',
+      action: 'Click',
+      label: category
+    })
+  }
+
+  return (
+    <Container>
+      <CategoryTilesContainer>
         { categories.map((category, i) => (
-          <Option value={i} key={i}>{category.title}</Option>
+          <TileContainer key={i}>
+            <Tile
+              onClick={() => {
+                onCategorySelected(i)
+                trackEvent(category.title)
+              }}
+              active={ selectedCategoryIndex === i }
+            >
+              { category.title }
+            </Tile>
+          </TileContainer>
         )) }
-      </Dropdown>
-      <ArrowDown src={require('../../../../assets/img/arrow-down.svg')}/>
-    </CategoryDropdownContainer>
-  </Container>
-)
+      </CategoryTilesContainer>
+      <CategoryDropdownContainer>
+        <Dropdown onChange={e => onCategorySelected(parseInt(e.target.value))} value={selectedCategoryIndex}>
+          { categories.map((category, i) => (
+            <Option value={i} key={i}>{category.title}</Option>
+          )) }
+        </Dropdown>
+        <ArrowDown src={require('../../../../assets/img/arrow-down.svg')}/>
+      </CategoryDropdownContainer>
+    </Container>
+  )
+}

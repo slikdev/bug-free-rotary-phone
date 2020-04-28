@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
 import BaseButtonOutline from '../BaseButtonOutline/BaseButtonOutline'
@@ -75,12 +76,21 @@ const Paragraph = styled.div`
   }
 `
 
-export default ({ icon, title, paragraph, fontColor, buttonCopy, buttonStyle, buttonColor, buttonLink, columns }) => {
+export default ({ contentfulTitle, icon, title, paragraph, fontColor, buttonCopy, buttonStyle, buttonColor, buttonLink, trackButtonClick, columns }) => {
+
+  const trackEvent = () => {
+    if (!trackButtonClick) return
+    ReactGA.event({
+      category: 'Icon Copy Action',
+      action: 'Click',
+      label: contentfulTitle
+    })
+  }
 
   const button = (() => {
-    if (buttonStyle === 'text') return <BaseButtonText text={ buttonCopy } color={ buttonColor } href={ buttonLink }/>
-    else if (buttonStyle === 'outline') return <BaseButtonOutline text={ buttonCopy } color={ buttonColor } href={ buttonLink }/>
-    else if (buttonStyle === 'solid') return <BaseButtonSolid text={ buttonCopy } color={ buttonColor } href={ buttonLink }/>
+    if (buttonStyle === 'text') return <BaseButtonText text={ buttonCopy } color={ buttonColor } href={ buttonLink } onClick={ trackEvent }/>
+    else if (buttonStyle === 'outline') return <BaseButtonOutline text={ buttonCopy } color={ buttonColor } href={ buttonLink } onClick={ trackEvent }/>
+    else if (buttonStyle === 'solid') return <BaseButtonSolid text={ buttonCopy } color={ buttonColor } href={ buttonLink } onClick={ trackEvent }/>
   })()
 
   return (

@@ -94,37 +94,40 @@ const ButtonContainer = styled.div`
   }
 `
 
-const trackClick = partner => {
-  ReactGA.event({
-    category: 'Partner module',
-    action: 'Click',
-    label: `Partner tile - ${partner}`
-  })
-}
+export default ({ partner, title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, logo }) => {
 
-export default ({ partner, title, paragraph, terms, bannerCopy, buttonCopy, buttonLink, logo }) => (
-  <Container href={ buttonLink } onClick={() => trackClick(partner)} target="_blank">
-    <LogoContainer>
-      { bannerCopy
-        ? (
-          <BannerContainer>
-            <BaseBanner text={ bannerCopy }/>
-          </BannerContainer>
-        ) : null
-      }
-      <Logo logo={ logo }/>
-    </LogoContainer>
-    <Content>
-      <ContentUpper>
-        <Title>{ title }</Title>
-        <Paragraph>{ paragraph }</Paragraph>
-      </ContentUpper>
-      <ContentLower>
-        <Terms>{ terms }</Terms>
-        <ButtonContainer>
-          <BaseButtonText text={ buttonCopy } color={vars.COLOR_RED_1} as="div"/>
-        </ButtonContainer>
-      </ContentLower>
-    </Content>
-  </Container>
-)
+  const trackEvent = () => {
+    ReactGA.event({
+      category: 'Partner',
+      action: 'Click',
+      label: partner
+    })
+  }
+
+  return (
+    <Container href={ buttonLink } onClick={ trackEvent } target="_blank">
+      <LogoContainer>
+        { bannerCopy
+          ? (
+            <BannerContainer>
+              <BaseBanner text={ bannerCopy }/>
+            </BannerContainer>
+          ) : null
+        }
+        <Logo logo={ logo }/>
+      </LogoContainer>
+      <Content>
+        <ContentUpper>
+          <Title>{ title }</Title>
+          <Paragraph>{ paragraph }</Paragraph>
+        </ContentUpper>
+        <ContentLower>
+          <Terms>{ terms }</Terms>
+          <ButtonContainer>
+            <BaseButtonText text={ buttonCopy } color={vars.COLOR_RED_1} as="div"/>
+          </ButtonContainer>
+        </ContentLower>
+      </Content>
+    </Container>
+  )
+}

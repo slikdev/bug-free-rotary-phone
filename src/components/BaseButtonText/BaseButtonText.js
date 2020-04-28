@@ -23,9 +23,9 @@ const Arrow = styled.svg`
   }
 `
 
-export default ({ text, color, href, as }) => {
+export default ({ text, color, href, as, onClick }) => {
   return (
-    <Button href={ href } as={ as } color={ color }>
+    <Button href={ href } as={ as } color={ color } onClick={ onClick }>
       <BaseText2 text={ text }/>
       <Arrow xmlns="http://www.w3.org/2000/svg" viewBox="0 0 11.071 7.071">
         <polygon fill={color} points="0 3 0 4 9.192 4 6.828 6.364 7.536 7.071 11.071 3.536 10.718 3.182 7.536 0 6.828 0.707 9.121 3 0 3"/>

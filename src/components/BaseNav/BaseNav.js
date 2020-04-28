@@ -34,7 +34,7 @@ export class BaseNav extends React.Component {
             label: 'Join button'
           })
           triggerFloodlightSignUp()
-          window.open(e.target.getAttribute('href'), "_self")
+          window.open(e.target.getAttribute('href'), '_self')
         })
         document.querySelector('.css-dqc9g8').addEventListener('click', e => {
           e.preventDefault()
@@ -44,7 +44,7 @@ export class BaseNav extends React.Component {
             label: 'Login button'
           })
           triggerFloodlightLogin()
-          window.open(e.target.getAttribute('href'), "_self")
+          window.open(e.target.getAttribute('href'), '_self')
         })
         clearInterval(checkExist)
       }

@@ -21,7 +21,7 @@ const Container = styled.a`
   }
 `
 
-export default ({ text, color, href }) => {
+export default ({ text, color, href, onClick }) => {
 
   const styles = (() => {
     if (color === '#e40000') return {
@@ -45,6 +45,7 @@ export default ({ text, color, href }) => {
       backgroundColor={ styles.backgroundColor }
       hoverFontColor={ styles.hoverFontColor }
       hoverBackgroundColor={ styles.hoverBackgroundColor }
+      onClick={ onClick }
     >
       <BaseText5 text={ text }/>
     </Container>

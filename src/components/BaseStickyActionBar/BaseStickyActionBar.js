@@ -35,7 +35,7 @@ const TextDesktop = styled(Text)`
   }
 `
 
-export default ({ copyDesktop, copyMobile, buttonCopy, buttonLink }) => (
+export default ({ copyDesktop, copyMobile, buttonCopy, buttonLink, onClick }) => (
   <Container>
     <TextDesktop>{ copyDesktop }</TextDesktop>
     <TextMobile>{ copyMobile }</TextMobile>
@@ -43,6 +43,7 @@ export default ({ copyDesktop, copyMobile, buttonCopy, buttonLink }) => (
       text={buttonCopy}
       href={buttonLink}
       color="#e40000"
+      onClick={ onClick }
     />
   </Container>
 )
