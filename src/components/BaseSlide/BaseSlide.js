@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import { up, only } from 'styled-breakpoints'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
@@ -79,7 +80,15 @@ const Button = styled.div`
   margin-top: ${vars.SPACING_4};
 `
 
-export default ({ title, caption, subtitle, imageLarge, imageMedium, imageSmall, fontColor, buttonCopy, buttonColor, buttonStyle, buttonLink, alignContentMobile }) => {
+export default ({ contentfulTitle, title, caption, subtitle, imageLarge, imageMedium, imageSmall, fontColor, buttonCopy, buttonColor, buttonStyle, buttonLink, alignContentMobile }) => {
+
+  const trackEvent = () => {
+    ReactGA.event({
+      category: 'Carousel Slide',
+      action: 'Click',
+      label: contentfulTitle
+    })
+  }
 
   return (
     <Container
@@ -97,7 +106,7 @@ export default ({ title, caption, subtitle, imageLarge, imageMedium, imageSmall,
         { buttonCopy && (
           <Button>{
             (() => {
-              const props = { text: buttonCopy, color: buttonColor, href: buttonLink }
+              const props = { text: buttonCopy, color: buttonColor, href: buttonLink, onClick: trackEvent }
               if (buttonStyle === 'text') return <BaseButtonText { ...props }/>
               if (buttonStyle === 'outline') return <BaseButtonOutline { ...props }/>
               if (buttonStyle === 'solid') return <BaseButtonSolid { ...props }/>

@@ -44,7 +44,6 @@ export default ({ id }) => {
               buttonStyle
               buttonColor
               buttonLink
-              trackButtonClick
             }
           }
         }
@@ -69,7 +68,6 @@ export default ({ id }) => {
               buttonStyle={item.buttonStyle}
               buttonColor={item.buttonColor}
               buttonLink={item.buttonLink}
-              trackButtonClick={item.trackButtonClick}
               columns={columns}
               key={i}
             />
@@ -89,7 +87,6 @@ export default ({ id }) => {
               buttonStyle="text"
               buttonColor={vars.COLOR_RED_1}
               buttonLink={item.buttonLink}
-              trackButtonClick={item.trackButtonClick}
               columns={columns}
               key={i}
             />

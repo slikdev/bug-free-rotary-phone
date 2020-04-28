@@ -25,6 +25,7 @@ export default ({ id }) => {
           nodes {
             id
             slides {
+              contentfulTitle
               title {
                 title
               }
@@ -63,6 +64,7 @@ export default ({ id }) => {
   ).allContentfulComponentCarousel.nodes.find(item => item.id === id)
 
   const slides = data.slides.map(slide => ({
+    contentfulTitle: slide.contentfulTitle,
     title: slide.title.title,
     caption: slide.caption && slide.caption.caption,
     subtitle: slide.subtitle && slide.subtitle.subtitle,

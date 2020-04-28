@@ -16,7 +16,6 @@ export default ({ id }) => {
             copyMobile
             buttonCopy
             buttonLink
-            trackButtonClick
             triggerSignupButtonFloodlightOnClick
           }
         }
@@ -45,7 +44,7 @@ export default ({ id }) => {
       buttonCopy={data.buttonCopy}
       buttonLink={data.buttonLink}
       onClick={(e) => {
-        data.trackButtonClick && trackEvent()
+        trackEvent()
         data.triggerSignupButtonFloodlightOnClick && triggerFloodlight(e)
       }}
     />

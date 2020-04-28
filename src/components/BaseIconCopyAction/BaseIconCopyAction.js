@@ -76,10 +76,9 @@ const Paragraph = styled.div`
   }
 `
 
-export default ({ contentfulTitle, icon, title, paragraph, fontColor, buttonCopy, buttonStyle, buttonColor, buttonLink, trackButtonClick, columns }) => {
+export default ({ contentfulTitle, icon, title, paragraph, fontColor, buttonCopy, buttonStyle, buttonColor, buttonLink, columns }) => {
 
   const trackEvent = () => {
-    if (!trackButtonClick) return
     ReactGA.event({
       category: 'Icon Copy Action',
       action: 'Click',

@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import { useStaticQuery, graphql } from 'gatsby'
 import BaseButtonText from '../../components/BaseButtonText/BaseButtonText'
 import BaseButtonOutline from '../../components/BaseButtonOutline/BaseButtonOutline'
@@ -18,6 +19,7 @@ export default ({ id }) => {
         allContentfulComponentButton {
           nodes {
             id
+            contentfulTitle
             text
             color
             link
@@ -28,10 +30,18 @@ export default ({ id }) => {
     `
   ).allContentfulComponentButton.nodes.find(item => item.id === id)
 
+  const trackEvent = () => {
+    ReactGA.event({
+      category: 'Component Button',
+      action: 'Click',
+      label: data.contentfulTitle
+    })
+  }
+
   const button = (() => {
-    if (data.style === 'text') return <BaseButtonText text={ data.text } color={ data.color } href={ data.link }/>
-    else if (data.style === 'outline') return <BaseButtonOutline text={ data.text } color={ data.color } href={ data.link }/>
-    else if (data.style === 'solid') return <BaseButtonSolid text={ data.text } color={ data.color } href={ data.link }/>
+    if (data.style === 'text') return <BaseButtonText text={ data.text } color={ data.color } href={ data.link } onClick={ trackEvent }/>
+    else if (data.style === 'outline') return <BaseButtonOutline text={ data.text } color={ data.color } href={ data.link } onClick={ trackEvent }/>
+    else if (data.style === 'solid') return <BaseButtonSolid text={ data.text } color={ data.color } href={ data.link } onClick={ trackEvent }/>
   })()
 
   return (

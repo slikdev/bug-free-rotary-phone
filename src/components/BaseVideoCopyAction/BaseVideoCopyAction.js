@@ -1,4 +1,5 @@
 import React from 'react'
+import ReactGA from 'react-ga'
 import styled from 'styled-components'
 import BaseButtonText from '../BaseButtonText/BaseButtonText'
 import { BaseThumbnail } from './components/BaseThumbnail/BaseThumbnail'
@@ -63,6 +64,14 @@ const Paragraph = styled.div`
 
 export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, buttonLink, columns, onImageThumbnailClick }) => {
 
+  const trackEvent = () => {
+    ReactGA.event({
+      category: 'Video Copy Action',
+      action: 'Click',
+      label: title
+    })
+  }
+
   return (
     <Container columns={ columns }>
       <BaseThumbnail
@@ -79,7 +88,7 @@ export default ({ title, paragraph, image, video, bannerCopy, buttonCopy, button
         <Paragraph>
           { paragraph }
         </Paragraph>
-        <BaseButtonText text={ buttonCopy } color={vars.COLOR_RED_1} href={ buttonLink }/>
+        <BaseButtonText text={ buttonCopy } color={vars.COLOR_RED_1} href={ buttonLink } onClick={ trackEvent }/>
       </Content>
     </Container>
   )
