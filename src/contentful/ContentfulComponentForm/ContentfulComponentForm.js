@@ -38,11 +38,11 @@ export default ({ id }) => {
   ).allContentfulComponentForm.nodes.find(item => item.id === id)
 
   return(
-    <BaseForm 
-      name={data.slug} 
-      fields={data.contentfulfields} 
+    <BaseForm
+      name={data.slug}
+      fields={data.contentfulfields}
       title={data.title}
-      description={data.description.text}
+      description={data.description && data.description.text}
     />
   )
 }

@@ -40,10 +40,10 @@ export default ({ id }) => {
   )
 
   const items = data.items.map(item => ({
-    title: item.title.title,
-    paragraph: item.paragraph.paragraph,
-    video: item.video.file.url,
-    image: item.imageThumbnail.file.url,
+    title: item.title && item.title.title,
+    paragraph: item.paragraph && item.paragraph.paragraph,
+    video: item.video && item.video.file.url,
+    image: item.imageThumbnail && item.imageThumbnail.file.url,
     bannerCopy: item.imageBannerCopy,
     buttonCopy: item.buttonCopy,
     buttonLink: item.buttonLink

@@ -33,15 +33,15 @@ export default ({ id }) => {
 
   const items = data.items.map(item => ({
     title: item.title,
-    paragraph: item.paragraph.paragraph,
-    icon: item.animation.file.url
+    paragraph: item.paragraph && item.paragraph.paragraph,
+    icon: item.animation && item.animation.file.url
   }))
 
   return (
     <BaseCvp
       items={items}
       displayMathSymbols={data.displayMathSymbols}
-      paragraph={data.supportingCopy.supportingCopy}
+      paragraph={data.supportingCopy && data.supportingCopy.supportingCopy}
       theme={data.theme}
     />
   )

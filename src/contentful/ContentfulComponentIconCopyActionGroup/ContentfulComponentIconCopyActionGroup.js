@@ -60,9 +60,9 @@ export default ({ id }) => {
           items={data.items.map((item, i) => (
             <BaseIconCopyAction
               contentfulTitle={item.contentfulTitle}
-              icon={item.icon.file.url}
-              title={item.title.title}
-              paragraph={item.paragraph.paragraph}
+              icon={item.icon && item.icon.file.url}
+              title={item.title && item.title.title}
+              paragraph={item.paragraph && item.paragraph.paragraph}
               fontColor={item.fontColor}
               buttonCopy={item.buttonCopy}
               buttonStyle={item.buttonStyle}
@@ -79,9 +79,9 @@ export default ({ id }) => {
           items={data.items.map((item, i) => (
             <BaseIconCopyAction
               contentfulTitle={item.contentfulTitle}
-              icon={item.icon.file.url}
-              title={item.title.title}
-              paragraph={item.paragraph.paragraph}
+              icon={item.icon && item.icon.file.url}
+              title={item.title && item.title.title}
+              paragraph={item.paragraph && item.paragraph.paragraph}
               fontColor={vars.COLOR_BLACK_2}
               buttonCopy={item.buttonCopy}
               buttonStyle="text"

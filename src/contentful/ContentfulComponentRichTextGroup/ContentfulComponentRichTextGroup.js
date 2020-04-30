@@ -25,7 +25,7 @@ export default ({ id }) => {
   return (
     <BaseColumnGroup
       items={ data.items.map((item, i) => (
-        <BaseRichText json={item.content.json} textAlign={item.textAlign} key={i}/>
+        <BaseRichText json={item.content && item.content.json} textAlign={item.textAlign} key={i}/>
       )) }
     />
   )

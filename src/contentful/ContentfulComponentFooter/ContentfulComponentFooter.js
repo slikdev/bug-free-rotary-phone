@@ -32,7 +32,7 @@ export default ({ id }) => {
   return (
     <BaseFooter
       slotLinks={ data.footerLinks.map((item, i) => <a href={item.link} key={i}><BaseText2 text={item.text}/></a>) }
-      slotSocialButtons={ data.socialButtons.map((item, i) => <BaseSocialButton icon={item.icon.file.url} href={item.link} key={i}/>) }
+      slotSocialButtons={ data.socialButtons.map((item, i) => <BaseSocialButton icon={item.icon && item.icon.file.url} href={item.link} key={i}/>) }
     />
   )
 }

@@ -50,9 +50,9 @@ export default ({ id }) => {
 
   return (
     <>
-      <ImageSmall src={data.imageSmall.file.url}/>
-      <ImageMedium src={data.imageMedium.file.url}/>
-      <ImageLarge src={data.imageLarge.file.url}/>
+      <ImageSmall src={data.imageSmall && data.imageSmall.file.url}/>
+      <ImageMedium src={data.imageMedium && data.imageMedium.file.url}/>
+      <ImageLarge src={data.imageLarge && data.imageLarge.file.url}/>
     </>
   )
 }

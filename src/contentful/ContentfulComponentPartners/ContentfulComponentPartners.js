@@ -41,12 +41,12 @@ export default ({ id }) => {
     partners: category.partners.map(partner => ({
       partner: partner.partner,
       title: partner.title,
-      paragraph: partner.paragraph.paragraph,
+      paragraph: partner.paragraph && partner.paragraph.paragraph,
       terms: partner.terms && partner.terms.terms,
       bannerCopy: partner.bannerCopy,
       buttonCopy: partner.buttonCopy,
       buttonLink: partner.buttonLink,
-      logo: partner.logo.file.url
+      logo: partner.logo && partner.logo.file.url
     }))
   }))
 

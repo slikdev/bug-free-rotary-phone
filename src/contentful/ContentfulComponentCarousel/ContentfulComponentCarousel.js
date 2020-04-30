@@ -65,12 +65,12 @@ export default ({ id }) => {
 
   const slides = data.slides.map(slide => ({
     contentfulTitle: slide.contentfulTitle,
-    title: slide.title.title,
+    title: slide.title && slide.title.title,
     caption: slide.caption && slide.caption.caption,
     subtitle: slide.subtitle && slide.subtitle.subtitle,
-    imageLarge: slide.imageLarge.file.url,
-    imageMedium: slide.imageMedium.file.url,
-    imageSmall: slide.imageSmall.file.url,
+    imageLarge: slide.imageLarge && slide.imageLarge.file.url,
+    imageMedium: slide.imageMedium && slide.imageMedium.file.url,
+    imageSmall: slide.imageSmall && slide.imageSmall.file.url,
     fontColor: slide.fontColor,
     buttonCopy: slide.buttonCopy,
     buttonStyle: slide.buttonStyle || 'outline',
