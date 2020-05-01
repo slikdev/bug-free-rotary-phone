@@ -46,8 +46,7 @@ export default ({ json, textAlign, forceFontSize, forceTextAlign }) => {
           <BaseText4 text={children}/>
         </Node>
       ),
-      [BLOCKS.PARAGRAPH]: (_, children) => (
-        children[0][1] &&
+      [BLOCKS.PARAGRAPH]: (_, children) => (!Array.isArray(children[0]) || !!children[0][1]) && (
         <Node marginBottom={vars.SPACING_5} forceFontSize={ forceFontSize } forceTextAlign={ forceTextAlign }>
           <BaseText2 text={children}/>
         </Node>
