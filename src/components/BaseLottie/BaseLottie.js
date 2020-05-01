@@ -24,6 +24,13 @@ export class BaseLottie extends React.Component {
     })
   }
 
+  play () {
+    return new Promise(resolve => {
+      this.lottie.addEventListener('complete', resolve)
+      this.lottie.play()
+    })
+  }
+
   render () {
     return <El ref={this.el}/>
   }

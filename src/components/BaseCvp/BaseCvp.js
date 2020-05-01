@@ -3,6 +3,8 @@ import styled from 'styled-components'
 import BaseCvpItem from '../../components/BaseCvpItem/BaseCvpItem'
 import { up } from 'styled-breakpoints'
 import vars from '../../assets/css/vars/vars'
+import { useRef } from 'react'
+import { useEffect } from 'react'
 
 const itemHorizontalSpacing = '3rem'
 
@@ -107,42 +109,46 @@ export default ({ paragraph, items, displayMathSymbols, theme }) => {
     }
   })()
 
+  const contentRef = useRef()
+  const lottieRefs = useRef([])
+  useEffect(() => {
+    const playAnimationSequence = async () => {
+      for (const [i, lottieRef] of lottieRefs.current.entries()) {
+        if (i === lottieRefs.length - 1) return
+        await lottieRef.play()
+      }
+    }
+    let observer = null
+    observer = new IntersectionObserver(([ entry ]) => {
+      if (entry.isIntersecting) {
+        playAnimationSequence()
+        observer.unobserve(entry.target)
+      }
+    })
+    observer.observe(contentRef.current)
+  }, [])
+
   return (
     <Container>
-      <Content displayMathSymbols={ displayMathSymbols }>
-        <BaseCvpItem
-          title={items[0].title}
-          paragraph={items[0].paragraph}
-          icon={items[0].icon}
-          theme={theme}
-        />
-        <MathIconContainer style={{ left: `calc(25% - (${itemHorizontalSpacing} / 2) + (0.25 * ${itemHorizontalSpacing}))` }} displayMathSymbols={ displayMathSymbols }>
-          <MathIcon src={themeVars.plusIcon}/>
-        </MathIconContainer>
-        <BaseCvpItem
-          title={items[1].title}
-          paragraph={items[1].paragraph}
-          icon={items[1].icon}
-          theme={theme}
-        />
-        <MathIconContainer style={{ left: `calc(50% - (${itemHorizontalSpacing} / 2) + (0.50 * ${itemHorizontalSpacing}))` }} displayMathSymbols={ displayMathSymbols }>
-          <MathIcon src={themeVars.plusIcon}/>
-        </MathIconContainer>
-        <BaseCvpItem
-          title={items[2].title}
-          paragraph={items[2].paragraph}
-          icon={items[2].icon}
-          theme={theme}
-        />
-        <MathIconContainer style={{ left: `calc(75% - (${itemHorizontalSpacing} / 2) + (0.75 * ${itemHorizontalSpacing}))` }} displayMathSymbols={ displayMathSymbols }>
-          <MathIcon src={themeVars.equalsIcon}/>
-        </MathIconContainer>
-        <BaseCvpItem
-          title={items[3].title}
-          paragraph={items[3].paragraph}
-          icon={items[3].icon}
-          theme={theme}
-        />
+      <Content displayMathSymbols={ displayMathSymbols } ref={contentRef}>
+        {items.map((item, i) => (
+          <React.Fragment key={i}>
+            <BaseCvpItem
+              ref={el => (lottieRefs.current[i] = el)}
+              title={item.title}
+              paragraph={item.paragraph}
+              icon={item.icon}
+              theme={theme}
+            />
+            {i < items.length - 1 && (
+              <MathIconContainer
+                style={{ left: `calc(${1 / items.length * (i + 1) * 100}% - (${itemHorizontalSpacing} / 2) + (${1 / items.length * (i + 1)} * ${itemHorizontalSpacing}))` }}
+                displayMathSymbols={ displayMathSymbols }>
+                <MathIcon src={themeVars.plusIcon}/>
+              </MathIconContainer>
+            )}
+          </React.Fragment>
+        ))}
       </Content>
       <Footer>
         <Img src={themeVars.logo}/>

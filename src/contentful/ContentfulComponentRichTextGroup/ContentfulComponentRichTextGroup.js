@@ -22,7 +22,7 @@ export default ({ id }) => {
     `
   ).allContentfulComponentRichTextGroup.nodes.find(item => item.id === id)
 
-  return (
+  return data.items && (
     <BaseColumnGroup
       items={ data.items.map((item, i) => (
         <BaseRichText json={item.content && item.content.json} textAlign={item.textAlign} key={i}/>

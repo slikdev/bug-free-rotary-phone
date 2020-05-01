@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { forwardRef } from 'react'
 import styled from 'styled-components'
 import vars from '../../assets/css/vars/vars'
 import { BaseLottie } from '../BaseLottie/BaseLottie'
@@ -59,7 +59,7 @@ const Paragraph = styled.div`
   max-width: 100%;
 `
 
-export default ({ title, paragraph, icon, theme }) => {
+export default forwardRef(({ title, paragraph, icon, theme }, ref) => {
 
   const themeVars = (() => {
     if (theme === 'colored') return {
@@ -74,9 +74,10 @@ export default ({ title, paragraph, icon, theme }) => {
     <Container fontColor={ themeVars.fontColor }>
       <IconContainer>
         <BaseLottie
+          ref={ref}
           json={icon}
-          autoplay={true}
-          loop={true}
+          autoplay={false}
+          loop={false}
         />
       </IconContainer>
       <Content>
@@ -87,4 +88,4 @@ export default ({ title, paragraph, icon, theme }) => {
       </Content>
     </Container>
   )
-}
+})
