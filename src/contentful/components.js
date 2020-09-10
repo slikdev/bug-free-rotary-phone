@@ -8,6 +8,7 @@ import ContentfulComponentDivider from './ContentfulComponentDivider/ContentfulC
 import ContentfulComponentImageFullWidth from './ContentfulComponentImageFullWidth/ContentfulComponentImageFullWidth'
 import ContentfulComponentIconCopyActionGroup from './ContentfulComponentIconCopyActionGroup/ContentfulComponentIconCopyActionGroup'
 import ContentfulComponentVideoCopyActionGroup from './ContentfulComponentVideoCopyActionGroup/ContentfulComponentVideoCopyActionGroup'
+import ContentfulComponentImageCopyActionGroup from './ContentfulComponentImageCopyActionGroup/ContentfulComponentImageCopyActionGroup'
 import ContentfulComponentButton from './ContentfulComponentButton/ContentfulComponentButton'
 import ContentfulComponentPartners from './ContentfulComponentPartners/ContentfulComponentPartners'
 import ContentfulComponentStickyActionBar from './ContentfulComponentStickyActionBar/ContentfulComponentStickyActionBar'
@@ -26,6 +27,7 @@ export default {
   ContentfulComponentImageFullWidth,
   ContentfulComponentIconCopyActionGroup,
   ContentfulComponentVideoCopyActionGroup,
+  ContentfulComponentImageCopyActionGroup,
   ContentfulComponentButton,
   ContentfulComponentPartners,
   ContentfulComponentStickyActionBar,

@@ -59,6 +59,7 @@ export default class TemplatePage extends React.Component {
 
   render() {
     const data = this.props.data.contentfulPage
+    
     return (
       <ThemeProvider theme={theme}>
         <DefaultStyles />
