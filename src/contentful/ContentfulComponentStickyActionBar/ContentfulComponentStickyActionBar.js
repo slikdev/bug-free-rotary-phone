@@ -2,7 +2,7 @@ import React from 'react'
 import ReactGA from 'react-ga'
 import { useStaticQuery, graphql } from 'gatsby'
 import BaseStickyActionBar from '../../components/BaseStickyActionBar/BaseStickyActionBar'
-import { triggerFloodlightSignUp } from '../../utils/floodlights'
+import { triggerFloodlightSignUp, triggerFloodlightSignUpAmazon } from '../../utils/floodlights'
 
 export default ({ id }) => {
   const data = useStaticQuery(
@@ -34,6 +34,7 @@ export default ({ id }) => {
   const triggerFloodlight = (e) => {
     e.preventDefault()
     triggerFloodlightSignUp()
+    triggerFloodlightSignUpAmazon()
     window.open(data.buttonLink, '_self')
   }
 

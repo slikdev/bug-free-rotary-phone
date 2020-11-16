@@ -43,3 +43,9 @@ export const triggerFloodlightSignUp = () => {
   var a = axel * 10000000000000
   document.write('<iframe src="https://5364734.fls.doubleclick.net/activityi;src=5364734;type=cms;cat=coali00;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=;tfua=;npa=;ord=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>')
 }
+
+export const triggerFloodlightSignUpAmazon = () => {
+  var axel = Math.random() + ''
+  var a = axel * 10000000000000
+  document.write('<iframe src="https://aax-fe.amazon-adsystem.com/s/iu3?d=generic&ex-fargs=%3Fid%3Daa7e5248-501d-001c-2252-e7f43af6a3da%26type%3D21%26m%3D111172&ex-fch=416613&ex-src=https://www.discover.qantasbusinessrewards.com&ex-hargs=v%3D1.0%3Bc%3D4845848780203%3Bp%3DAA7E5248-501D-001C-2252-E7F43AF6A3DA' + '&cb=' + a + '?" width="1" height="1" frameborder="0" style="display:none"></iframe>')
+}
