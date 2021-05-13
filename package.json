@@ -48,7 +48,7 @@
     "reaptcha": "^1.7.2",
     "styled-breakpoints": "^7.2.0",
     "styled-components": "^5.0.0",
-    "swiper": "^5.3.0"
+    "swiper": "^6.5.1"
   },
   "devDependencies": {
     "prettier": "^1.19.1"
