@@ -11,7 +11,6 @@
     "start": "yarn serve",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "heroku-postbuild": "gatsby build",
     "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\" && exit 1"
   },
   "dependencies": {
@@ -24,6 +23,7 @@
     "gatsby": "^2.18.12",
     "gatsby-image": "^2.2.34",
     "gatsby-plugin-env-variables": "^1.0.1",
+    "gatsby-plugin-google-tagmanager": "^3.5.0",
     "gatsby-plugin-manifest": "^2.2.31",
     "gatsby-plugin-offline": "^3.0.27",
     "gatsby-plugin-polyfill-io": "^1.1.0",
